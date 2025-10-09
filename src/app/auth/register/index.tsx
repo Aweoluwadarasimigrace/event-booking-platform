@@ -3,8 +3,11 @@
 import Link from 'next/link'
 import React from 'react'
 import { LuAsterisk } from 'react-icons/lu'
+import { useRegister } from '../hook/useRegister'
 
 const Register = () => {
+
+    const {formdata, handleChange, handleSubmit, isLoading}=useRegister()
   return (
     <div className='px-9 py-4 bg-white'>
         {/* heading */}
@@ -15,34 +18,34 @@ const Register = () => {
         </div>
         {/* form */}
         <div>
-            <form>
+            <form onSubmit={handleSubmit} className='mt-6'>
                 <div>
                     <div className='flex items-center gap-0.5 text-center'>
                         <LuAsterisk className='text-[#fc6435] text-xs' />
                         <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="firstname">First Name</label>
                     </div>
-                    <input className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='firstname' placeholder='Enter your first name' />
+                    <input className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='firstname' placeholder='Enter your first name' onChange={handleChange} />
                 </div>
                  <div>
                    <div className='flex items-center gap-0.5 text-center'>
                         <LuAsterisk className='text-[#fc6435] text-xs' />
                         <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="lastname">Last Name</label>
                    </div>
-                    <input className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='lastname' placeholder='Enter your last name' />
+                    <input onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='lastname' placeholder='Enter your last name' />
                 </div>
                  <div>
                     <div className='flex items-center gap-0.5 text-center'>
                         <LuAsterisk className='text-[#fc6435] text-xs' />
                         <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="email">Email</label>
                     </div>
-                    <input className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="email" name='email' placeholder='Enter your email' />
+                    <input onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="email" name='email' placeholder='Enter your email' />
                 </div>
                  <div>
                    <div className='flex items-center gap-0.5 text-center'>
                      <LuAsterisk className='text-[#fc6435] text-xs' />
                     <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="password">Password</label>
                    </div>
-                    <input className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="password" name='password' placeholder='Enter your password' />
+                    <input onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="password" name='password' placeholder='Enter your password' />
                 </div>
 
                 <div className='flex gap-4'>
