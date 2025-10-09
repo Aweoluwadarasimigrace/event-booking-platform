@@ -46,7 +46,11 @@ export const POST = async (request: Request) => {
         return Response.json({message: "Admin registered successfully", token , user: newUser}, {status: 201});
 
     } catch (error) {
+       if(error instanceof Error){
+            return Response.json({message: error.message}, {status: 500});
+        }else{  
         return Response.json({message: "Internal server error"}, {status: 500});
+    }
     }
 }
 
