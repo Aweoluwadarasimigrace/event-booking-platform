@@ -43,7 +43,7 @@ export const POST = async (request: Request) => {
 
         const token = getToken(newUser._id.toString());
 
-        return Response.json({message: "Admin registered successfully", token , user: newUser}, {status: 201});
+        return Response.json({message: "Admin registered successfully",token, user: newUser}, {status: 201});
 
     } catch (error) {
        if(error instanceof Error){

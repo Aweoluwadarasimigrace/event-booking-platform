@@ -1,7 +1,6 @@
-import axios from "axios"
+import { apiClient } from "@/app/lib/client"
 import { useState } from "react"
-
-
+import { toast } from "sonner"
 
 
 type dataprops ={
@@ -22,8 +21,9 @@ const [formdata, setformdata] = useState<dataprops["formdata"]>({
     email:"",
     password:""
 })
+// const Router = useRouter()
 const [isLoading, setisLoading] = useState(false)
-
+const [errors, seterrors] = useState({})
 const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
     setformdata({
         ...formdata,
@@ -35,9 +35,18 @@ const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
 const handleSubmit=async (e:React.FormEvent)=>{
     e.preventDefault()
     setisLoading(true)
+
+    if(!formdata.firstname || !formdata.lastname || !formdata.email || !formdata.password){
+        seterrors({message:"All fields are required"})
+        setisLoading(false)
+        return
+    }
     try {
-        const res = await axios.post(`${process.env.BASE_URL}/api/admin/register`, formdata)
-        console.log(res.data)
+        const res = await apiClient.post(`/api/admin/register`, formdata)
+        if(res.data){
+            console.log(res.data)
+            toast.success(res.data.message)
+        }
     } catch (error) {
         if(error instanceof Error){
             console.log(error.message)
@@ -50,6 +59,6 @@ const handleSubmit=async (e:React.FormEvent)=>{
 }
 
 
-return {formdata, handleChange, handleSubmit, isLoading}
+return {formdata, handleChange, handleSubmit, isLoading, errors}
 
 }
