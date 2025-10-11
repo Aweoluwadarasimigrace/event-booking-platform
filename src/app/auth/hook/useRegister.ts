@@ -1,4 +1,5 @@
 import { apiClient } from "@/app/lib/client"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -13,6 +14,7 @@ type dataprops ={
 }
 
 
+
 export const useRegister = ()=>{
 
 const [formdata, setformdata] = useState<dataprops["formdata"]>({
@@ -21,9 +23,9 @@ const [formdata, setformdata] = useState<dataprops["formdata"]>({
     email:"",
     password:""
 })
-// const Router = useRouter()
+const Router = useRouter()
 const [isLoading, setisLoading] = useState(false)
-const [errors, seterrors] = useState({})
+const [errors, seterrors] = useState<{message:string}>({message: ""})
 const handleChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
     setformdata({
         ...formdata,
@@ -44,8 +46,9 @@ const handleSubmit=async (e:React.FormEvent)=>{
     try {
         const res = await apiClient.post(`/api/admin/register`, formdata)
         if(res.data){
-            console.log(res.data)
+            sessionStorage.setItem("token", res.data.token)
             toast.success(res.data.message)
+            Router.push("/dashboard")
         }
     } catch (error) {
         if(error instanceof Error){

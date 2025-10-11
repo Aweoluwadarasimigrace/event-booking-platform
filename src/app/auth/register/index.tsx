@@ -7,55 +7,74 @@ import { useRegister } from '../hook/useRegister'
 
 const Register = () => {
 
-    const {formdata, handleChange, handleSubmit, isLoading}=useRegister()
+    const {formdata, handleChange, handleSubmit, isLoading, errors}=useRegister()
   return (
     <div className='px-9 py-4 bg-white'>
         {/* heading */}
         <div>
             <h1 className='font-medium tracking-[0.03em] text-[#fc6435] text-xl mb-5'>EVENTLOOP</h1>
-            <h1 className='text-black text-[30px] font-[700] font-[Plus Jakarta Sans", sans-serif]'>Create an account</h1>
+            <h1 className='text-black text-[23px] md:text-[30px] font-[700] font-[Plus Jakarta Sans", sans-serif]'>Create an account</h1>
             <p className='text-[16px] font-[400] font-[Plus Jakarta Sans", sans-serif]'>It's free to create an account and get started with Eventloop!</p>
         </div>
         {/* form */}
         <div>
             <form onSubmit={handleSubmit} className='mt-6'>
+
+
+                {/* first name */}
                 <div>
                     <div className='flex items-center gap-0.5 text-center'>
                         <LuAsterisk className='text-[#fc6435] text-xs' />
                         <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="firstname">First Name</label>
                     </div>
-                    <input className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='firstname' placeholder='Enter your first name' onChange={handleChange} />
+                    <input value={formdata.firstname} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='firstname' placeholder='Enter your first name' onChange={handleChange} />
+
+                    {errors.message && <p className='text-red-500 text-sm'>{errors.message}</p>}
                 </div>
+
+
+                {/* last name */}
                  <div>
                    <div className='flex items-center gap-0.5 text-center'>
                         <LuAsterisk className='text-[#fc6435] text-xs' />
                         <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="lastname">Last Name</label>
                    </div>
-                    <input onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='lastname' placeholder='Enter your last name' />
+                    <input value={formdata.lastname} onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="text" name='lastname' placeholder='Enter your last name' />
+                         {errors.message && <p className='text-red-500 text-sm'>{errors.message}</p>}
                 </div>
+
+                {/* email */}
                  <div>
                     <div className='flex items-center gap-0.5 text-center'>
                         <LuAsterisk className='text-[#fc6435] text-xs' />
                         <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="email">Email</label>
                     </div>
-                    <input onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="email" name='email' placeholder='Enter your email' />
+                   
+                 <input value={formdata.email} onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="email" name='email' placeholder='Enter your email' />
+                      {errors.message && <p className='text-red-500 text-sm'>{errors.message}</p>}
                 </div>
+
+                {/* password */}
                  <div>
                    <div className='flex items-center gap-0.5 text-center'>
                      <LuAsterisk className='text-[#fc6435] text-xs' />
                     <label className='block text-[14px] font-[500] mb-2 mt-4' htmlFor="password">Password</label>
                    </div>
-                    <input onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="password" name='password' placeholder='Enter your password' />
+                    <input value={formdata.password} onChange={handleChange} className='w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-1 focus:ring-[#fc6435]' type="password" name='password' placeholder='Enter your password' />
+                         {errors.message && <p className='text-red-500 text-sm'>{errors.message}</p>}
                 </div>
 
+                {/* submit buttons */}
                 <div className='flex gap-4'>
                     <button type='button' className='w-full bg-[#ffefea] text-[#fc6435] py-3 rounded-md mt-6 transition duration-300 ease-in-out'>
-                       <Link href={"/"}>Back to login</Link>
+                       <Link href={"/"}>Back</Link>
                     </button>
                     <button className='w-full bg-[#fc6435] text-white py-3 rounded-md mt-6 hover:bg-[#e5533d] transition duration-300 ease-in-out' type='submit'>
-                        sign up
+                        {isLoading ? "Registering..." : "Register"}
                     </button>
                 </div>
+
+                <p className='text-center mt-4'>Already have an account? <Link className='text-[#fc6435] font-[500]' href={"/auth/login"}>Login</Link></p>
             </form>
         </div>
     </div>
