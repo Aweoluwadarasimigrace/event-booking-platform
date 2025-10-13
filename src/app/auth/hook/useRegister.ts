@@ -51,14 +51,14 @@ const handleSubmit=async (e:React.FormEvent)=>{
             toast.success(res.data.message)
             Router.push("/dashboard")
         }
-    } catch (error: any) {
-        if(axios.isAxiosError(error)){
+    } catch (error: unknown) {
+        if (axios.isAxiosError(error)) {
             const message = error.response?.data?.message
             toast.error(message || "failed to register")
-        }else{
+        } else {
             console.log("An unknown error occurred")
         }
-    }finally{
+    } finally {
         setisLoading(false)
     }
 }

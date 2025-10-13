@@ -1,4 +1,5 @@
 import { apiClient } from "@/app/lib/client";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -43,9 +44,13 @@ export const useLogin = () => {
         toast.success(res.data.message);
         Router.push("/dashboard");
       }
-    } catch (error: any) {
-      const message = error.response?.data?.message;
-      toast.error(message || "Login failed");
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        const message = error.response?.data?.message;
+        toast.error(message || "Login failed");
+      } else {
+        console.log("An unknown error occurred");
+      }
     } finally {
       setisLoading(false);
     }
