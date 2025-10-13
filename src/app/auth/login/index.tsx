@@ -41,9 +41,9 @@ const Login = () => {
     
                   
                         <button className='w-full bg-[#fc6435] text-white py-3 rounded-md mt-6 hover:bg-[#e5533d] transition duration-300 ease-in-out' type='submit'>
-                            {isLoading ? "Registering..." : "Register"}
+                            {isLoading ? "Logging in..." : "Login"}
                         </button>
-                    <p className='text-center mt-4'>Don't have an account? <Link className='text-[#fc6435] font-[500]' href={"/auth/login"}>Create one</Link></p>
+                    <p className='text-center mt-4'>Don't have an account? <Link className='text-[#fc6435] font-[500]' href={"/auth/register"}>Create one</Link></p>
                 </form>
             </div>
         </div>

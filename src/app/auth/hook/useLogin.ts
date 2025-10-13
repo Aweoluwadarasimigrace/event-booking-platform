@@ -43,8 +43,9 @@ export const useLogin = () => {
         toast.success(res.data.message);
         Router.push("/dashboard");
       }
-    } catch (error) {
-      toast.error("Login failed");
+    } catch (error: any) {
+      const message = error.response?.data?.message;
+      toast.error(message || "Login failed");
     } finally {
       setisLoading(false);
     }
