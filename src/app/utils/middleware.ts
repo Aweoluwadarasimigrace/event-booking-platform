@@ -4,7 +4,7 @@ import User from "../api/model/user.model";
 
 export const verifyToken = async (req: NextRequest) => {
   const token = req.headers.get("authorization")?.split(" ")[1];
-
+  console.log(token);
   if (!token) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
