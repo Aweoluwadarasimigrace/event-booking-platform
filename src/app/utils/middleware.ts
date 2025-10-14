@@ -14,7 +14,7 @@ export const verifyToken = async (req: NextRequest) => {
       id: string;
     };
 
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded.id).select("-password");
     if(!user) {
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }

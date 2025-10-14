@@ -3,8 +3,8 @@ import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async(req: NextRequest)=>{
-    await connectDB();
     try {
+        await connectDB();
         const user = await verifyToken(req);
         return NextResponse.json({ user }, { status: 200 });
     } catch (error) {
