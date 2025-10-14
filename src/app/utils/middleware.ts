@@ -19,7 +19,7 @@ export const verifyToken = async (req: NextRequest) => {
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
    
-    return user;
+    return user.toObject();
   } catch (error) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
