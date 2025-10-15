@@ -17,8 +17,10 @@ export const verifyToken = async (req: NextRequest) => {
     if (!user) throw new Error("User not found");
 
     return user.toObject();
-  } catch (error: any) {
-    console.error("❌ Token verification failed:", error.message);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("❌ Token verification failed:", error.message);
+    }
     throw new Error("Unauthorized");
   }
 };

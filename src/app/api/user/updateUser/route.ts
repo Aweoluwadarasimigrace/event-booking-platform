@@ -4,15 +4,21 @@ import { NextRequest, NextResponse } from "next/server";
 import User from "../../model/user.model";
 
 
+
+type usertoUpdateType = {
+  firstname?: string;
+  lastname?: string;
+  email?: string;
+}
 export const PATCH = async (req: NextRequest) => {
   try {
 
     await connectDB();
     const user = await verifyToken(req);
-    const { firstname, lastname, email} = await req.json();
+    const { firstname, lastname, email}: usertoUpdateType = await req.json();
 
 
-    const usertoUpdate: any = {}
+    const usertoUpdate: usertoUpdateType = {}
 
     if(firstname){
       usertoUpdate.firstname = firstname
