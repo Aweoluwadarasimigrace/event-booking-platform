@@ -11,10 +11,21 @@ export const PATCH = async (req: NextRequest) => {
     const user = await verifyToken(req);
     const { firstname, lastname, email} = await req.json();
 
+
+    const usertoUpdate: any = {}
+
+    if(firstname){
+      usertoUpdate.firstname = firstname
+    }
+    if(lastname){
+      usertoUpdate.lastname = lastname
+    }
+    if(email){
+      usertoUpdate.email = email
+    }
+
    const updateUser = await User.findByIdAndUpdate(user._id, {
-    firstname,
-    lastname,
-    email
+    usertoUpdate
    }, {new: true}).select("-password");
 
    if(!updateUser) {
