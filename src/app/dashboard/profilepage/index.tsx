@@ -14,13 +14,16 @@ type FormData = {
 };
 
 const Profilepage = () => {
-  const { user, loading, error, fetchUser, updateUser } = useUserStore();
+  const { user, fetchUser, updateUser } = useUserStore();
   const [formData, setformData] = useState<FormData>({
     firstname: "",
     lastname: "",
     email: "",
     contact: "",
   });
+
+
+  const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
     fetchUser();
   }, []);
@@ -144,11 +147,11 @@ const Profilepage = () => {
  <div className="px-6 py-4 rounded-b-xl flex justify-end">
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={isLoading}
                     className="px-6 py-2.5 bg-[#fc6435] hover:bg-[#fc6435] text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500 transition-all"
                   >
                    
-                   {loading ? <Loading /> : "Save Changes" } 
+                   {isLoading ? <Loading /> : "Save Changes" } 
                   </button>
                 </div>
       </form>
