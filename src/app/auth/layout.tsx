@@ -52,7 +52,8 @@ export default function RootLayout({
          </div>
          <div className="hidden lg:block w-[40%] h-full fixed top-0 right-0
          ">
-            <Image src={"/login.jpg"} alt="" layout="fill" objectFit="cover" objectPosition="right" />
+            <Image src={"/login.jpg"} alt=""   fill
+  style={{ objectFit: "cover", objectPosition: "right" }}/>
          </div>
        </div>
   );

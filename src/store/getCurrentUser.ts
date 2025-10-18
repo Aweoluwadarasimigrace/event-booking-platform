@@ -1,14 +1,14 @@
 "use client";
 
-import { fetchCurrentUser } from "@/service/authService";
+import { fetchCurrentUser, UpdateUser } from "@/service/authService";
 import { create } from "zustand";
 
 
 type User = {
-  _id: string;
   firstname: string;
   lastname: string;
   email: string;
+  contact:string;
   // add any other fields your user model includes
 };
 
@@ -18,6 +18,7 @@ type userStore={
     loading: boolean,
     error: string | null,
     fetchUser: ()=> Promise<void>
+    updateUser: (formData: User)=> Promise<void>
 }
 
 const useUserStore = create<userStore>((set) => ({
@@ -41,6 +42,24 @@ const useUserStore = create<userStore>((set) => ({
       }
     }
   },
+
+  updateUser: async(formData)=>{
+    set({loading: true, error: null})
+
+    try {
+        const updateData = await UpdateUser(formData)
+        set({user: updateData, loading: false})
+    } catch (error) {
+         if (error instanceof Error) {
+        set({
+          error: error.message || "Failed to fetch user",
+          loading: false,
+        });
+        console.log(error);
+      }
+    }
+  }
+
 }));
 
 

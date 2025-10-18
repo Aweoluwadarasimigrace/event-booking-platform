@@ -7,18 +7,20 @@ type UserToUpdateType = {
   firstname?: string;
   lastname?: string;
   email?: string;
+  contact?:string;
 };
 
 export const PATCH = async (req: NextRequest) => {
   try {
     await connectDB();
     const user = await verifyToken(req);
-    const { firstname, lastname, email }: UserToUpdateType = await req.json();
+    const { firstname, lastname, email, contact }: UserToUpdateType = await req.json();
 
     const userToUpdate: UserToUpdateType = {};
     if (firstname) userToUpdate.firstname = firstname;
     if (lastname) userToUpdate.lastname = lastname;
     if (email) userToUpdate.email = email;
+    if(contact) userToUpdate.contact = contact
 
     const updatedUser = await User.findByIdAndUpdate(
       user._id,
