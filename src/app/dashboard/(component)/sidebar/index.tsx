@@ -22,9 +22,9 @@ const SideBar = () => {
   const [isOpen, setisOpen] = useState(false);
 
   return (
-    <div>
+    <div className="flex-1">
       {/* side bar */}
-      <div className="h-screen hidden lg:block border border-l border-gray-500 w-1/4 bg-red-500">
+      <div className="h-screen hidden lg:block border border-l border-gray-500 w-2/4 bg-red-500">
         <div>
           <h1 className="text-amber-500 font-bold text-xl">EVENTLOOP</h1>
         </div>
