@@ -34,7 +34,7 @@ const {handleLogout}=useLogout();
         key={index}
         href={menu.path}
         className={`block p-2 text-gray-700 text-md ${
-          pathName === menu.path ? "text-amber-500 text-md" : ""
+          pathName === menu.path ? "text-pink-500 text-md" : ""
         }`}
       >
         {menu.item}
