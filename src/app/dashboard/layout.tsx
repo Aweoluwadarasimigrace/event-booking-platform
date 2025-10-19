@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
 
-     <div>
+     <div className="flex">
      <SideBar />
     {children}
      </div>

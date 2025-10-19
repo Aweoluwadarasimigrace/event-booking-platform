@@ -26,12 +26,12 @@ const SideBar = () => {
 
 
   return (
-    <div className="h-screen lg:hidden border-l border-gray-500">
+    <div className="h-screen md:hidden border-l border-gray-500 w-1/4">
       <div>
         <h1 className="bg-amber-500">EVENTLOOP</h1>
       </div>
 
-      <div className="flex flex-cols space-x-2 p-2 ">
+      <div className="flex flex-cols p-2 ">
         {menuBar.map((menu, index) => (
           <Link
             key={index}
