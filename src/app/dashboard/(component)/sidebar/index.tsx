@@ -26,7 +26,7 @@ const SideBar = () => {
 
 
   return (
-    <div className="h-screen md:hidden border-l border-gray-500 w-1/4">
+    <div className="h-screen hidden lg:block border border-l border-gray-500 w-1/4 bg-red-500">
       <div>
         <h1 className="bg-amber-500">EVENTLOOP</h1>
       </div>
