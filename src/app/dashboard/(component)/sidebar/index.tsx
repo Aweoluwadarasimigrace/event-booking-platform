@@ -22,29 +22,28 @@ const SideBar = () => {
   const [isOpen, setisOpen] = useState(false);
 
   return (
-    <div className="flex-1">
+    <div className="flex">
       {/* side bar */}
-      <div className="h-screen hidden lg:block border border-l border-gray-500 w-2/4 bg-red-500">
-        <div>
-          <h1 className="text-amber-500 font-bold text-xl">EVENTLOOP</h1>
-        </div>
+     <div className="h-screen hidden lg:block border-l border-gray-500 w-64 bg-red-500">
+  <div className="p-4">
+    <h1 className="text-amber-500 font-bold text-xl">EVENTLOOP</h1>
+  </div>
 
-        <div className="flex flex-col p-2 ">
-          {menuBar.map((menu, index) => (
-            <Link
-              key={index}
-              href={menu.path}
-              className={`block p-2 text-gray-700 text-md  ${
-                pathName === menu.path
-                  ? "text-[#fc6435] font-bold text-md"
-                  : ""
-              }`}
-            >
-              {menu.item}
-            </Link>
-          ))}
-        </div>
-      </div>
+  <div className="flex flex-col p-2">
+    {menuBar.map((menu, index) => (
+      <Link
+        key={index}
+        href={menu.path}
+        className={`block p-2 text-gray-700 text-md ${
+          pathName === menu.path ? "text-[#fc6435] font-bold" : ""
+        }`}
+      >
+        {menu.item}
+      </Link>
+    ))}
+  </div>
+</div>
+
 
       <div className="bg-white lg:hidden w-full">
         <header>
