@@ -3,22 +3,21 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
+import { FaRegUser } from "react-icons/fa6";
 import { FiMenu, FiX } from "react-icons/fi";
+import { MdEventNote } from "react-icons/md";
+import { TbHelpOctagon, TbLogout2 } from "react-icons/tb";
+import { useLogout } from "../../hooks/useLogout";
 
 const SideBar = () => {
   const pathName = usePathname();
   const menuBar = [
-    { item: "Event", path: "/dashboard/events" },
-    { item: "Account", path: "/dashboard/profilepage" },
-    { item: "Event", path: "/dashboard/events" },
+    { item: "Event", path: "/dashboard/events" , icon: <MdEventNote />},
+    { item: "Account", path: "/dashboard/profilepage" , icon: <FaRegUser />},
+    { item: "Help", path: "/dashboard/help", icon: <TbHelpOctagon />},
   ];
 
-  //   const sidemenu = [
-  //      { item: "Event", path: "/dashboard/events" },
-  //     { item: "Event", path: "/dashboard/events" },
-  //     { item: "Event", path: "/dashboard/events" }
-  //   ];
-
+const {handleLogout}=useLogout();
   const [isOpen, setisOpen] = useState(false);
 
   return (
@@ -29,18 +28,25 @@ const SideBar = () => {
     <h1 className="text-amber-500 font-bold text-xl">EVENTLOOP</h1>
   </div>
 
-  <div className="flex flex-col p-2">
+  <div className="flex flex-col p-2 mb-6">
     {menuBar.map((menu, index) => (
       <Link
         key={index}
         href={menu.path}
         className={`block p-2 text-gray-700 text-md ${
-          pathName === menu.path ? "text-[#fc6435] font-bold" : ""
+          pathName === menu.path ? "text-amber-500 text-md" : ""
         }`}
       >
         {menu.item}
       </Link>
     ))}
+
+    <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
+        <TbLogout2 />
+        <button className="text-md" onClick={handleLogout}>
+            logout
+        </button>
+    </div>
   </div>
 </div>
 
@@ -76,6 +82,12 @@ const SideBar = () => {
                   {menu.item}
                 </Link>
               ))}
+               <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
+        <TbLogout2 />
+        <button className="text-md" onClick={handleLogout}>
+            logout
+        </button>
+    </div>
             </div>
           </div>
         </div>
