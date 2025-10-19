@@ -14,7 +14,10 @@ type FormData = {
 };
 
 const Profilepage = () => {
-  const { user, updateUser } = useUserStore();
+  const { user, updateUser, fetchUser } = useUserStore();
+       useEffect(() => {
+          fetchUser();
+        }, []);
   const [formData, setFormData] = useState<FormData>({
     firstname: "",
     lastname: "",
