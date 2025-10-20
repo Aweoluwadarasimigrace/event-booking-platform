@@ -23,7 +23,7 @@ const {handleLogout}=useLogout();
   return (
     <div className="flex">
       {/* side bar */}
-     <div className="h-screen hidden lg:block border-l border-gray-500 w-64 bg-red-500">
+     <div className="h-screen hidden lg:block border-l border-gray-500 w-64 bg-white">
   <div className="p-4">
     <h1 className="text-amber-500 font-bold text-2xl">EVENTLOOP</h1>
   </div>
@@ -33,9 +33,9 @@ const {handleLogout}=useLogout();
     <Link
   key={index}
   href={menu.path}
-  className={`flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
+  className={ `flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
     pathName === menu.path
-      ? "bg-amber-500 text-amber-700 font-semibold"
+      ? "bg-amber-500 border border-l border-2 border-amber-500 text-amber-700 font-semibold"
       : "text-gray-700 hover:text-amber-500"
   }`}
 >
@@ -68,7 +68,7 @@ const {handleLogout}=useLogout();
       </div>
 
       {isOpen && (
-        <div className="bg-opacity-50 z-50">
+        <div className="bg-opacity-50 z-50 lg-hidden">
           <div className="w-full h-full bg-pink-500 p-4 fixed top-0 left-0">
             <button onClick={() => setisOpen(false)} className="mb-4 text-xl">
              <FiX />
@@ -90,9 +90,9 @@ const {handleLogout}=useLogout();
 
 
               ))}
-               <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
+               <div className="mt-auto flex items-center text-2xl gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
         <TbLogout2 />
-        <button className="text-md" onClick={handleLogout}>
+        <button onClick={handleLogout}>
             logout
         </button>
     </div>
