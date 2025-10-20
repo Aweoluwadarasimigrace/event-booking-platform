@@ -31,7 +31,7 @@ const {handleLogout}=useLogout();
   <div className="flex flex-col p-2">
     {menuBar.map((menu, index) => (
       <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer" key={index}>
-          <p>{menu.icon}</p>
+          <p className="text-xl">{menu.icon}</p>
       <Link
         href={menu.path}
         className={`block p-2 mb-6 text-gray-700 text-xl ${
