@@ -74,16 +74,14 @@ const {handleLogout}=useLogout();
               {menuBar.map((menu, index) => (
               <div className="flex items-center gap-2 text-center " key={index}>
                 <span>{menu.icon}</span>
-                  <Link
-                  href={menu.path}
-                  className={`block p-2 text-gray-700 text-xl mb-6 ${
-                    pathName === menu.path
-                      ? "text-amber-500 font-bold"
-                      : ""
-                  }`}
-                >
-                  {menu.item}
-                </Link>
+                 <Link
+  href={menu.path}
+  className={`block p-2 text-gray-700 text-xl mb-6 ${
+    pathName === menu.path ? "text-amber-500 font-bold" : ""
+  }`}
+>
+  {menu.item}
+</Link>
               </div>
               ))}
                <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
