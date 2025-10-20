@@ -30,23 +30,19 @@ const {handleLogout}=useLogout();
 
   <div className="flex flex-col p-2">
     {menuBar.map((menu, index) => (
-     <div
-  className="mt-auto flex items-center justify-center gap-2 p-2 cursor-pointer"
+    <Link
   key={index}
+  href={menu.path}
+  className={`flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
+    pathName === menu.path
+      ? "bg-amber-500 text-amber-700 font-semibold"
+      : "text-gray-700 hover:text-amber-500"
+  }`}
 >
-  <p className="text-xl">{menu.icon}</p>
+  <span className="text-2xl">{menu.icon}</span>
+  <span className="text-lg">{menu.item}</span>
+</Link>
 
-  <Link
-    href={menu.path}
-    className={`block p-2 mb-6 text-xl rounded ${
-      pathName === menu.path
-        ? "text-amber-700 bg-amber-500 font-bold"
-        : "text-gray-700"
-    }`}
-  >
-    {menu.item}
-  </Link>
-</div>
 
     ))}
 
@@ -79,23 +75,19 @@ const {handleLogout}=useLogout();
             </button>
             <div className="flex flex-col gap-4 text-center">
               {menuBar.map((menu, index) => (
-             <div
-  className="mt-auto flex items-center justify-center gap-2 p-2 cursor-pointer"
+             <Link
   key={index}
+  href={menu.path}
+  className={`flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
+    pathName === menu.path
+      ? "bg-amber-500 text-amber-700 font-semibold"
+      : "text-gray-700 hover:text-amber-500"
+  }`}
 >
-  <p className="text-xl">{menu.icon}</p>
+  <span className="text-2xl">{menu.icon}</span>
+  <span className="text-lg">{menu.item}</span>
+</Link>
 
-  <Link
-    href={menu.path}
-    className={`block p-2 mb-6 text-xl rounded ${
-      pathName === menu.path
-        ? "text-amber-700 bg-amber-500 font-bold"
-        : "text-gray-700"
-    }`}
-  >
-    {menu.item}
-  </Link>
-</div>
 
               ))}
                <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
