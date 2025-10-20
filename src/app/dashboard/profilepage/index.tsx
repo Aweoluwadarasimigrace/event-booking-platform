@@ -62,12 +62,12 @@ const Profilepage = () => {
   };
 
   return (
-    <div className="bg-white w-full ">
+    <div className="bg-white w-full h-full p-6">
       <div>
-        <h1 className="border-b font-2xl font-semibold">Account</h1>
+        <h1 className="border-b text-2xl font-semibold">Account</h1>
       </div>
 
-      <div className="mt-6 font-semibold text-lg">
+      <div className="mt-6 font-semibold text-lg tracking-1">
         <h1>Personal details</h1>
       </div>
 
