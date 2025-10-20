@@ -35,7 +35,7 @@ const SideBar = () => {
               href={menu.path}
               className={`flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
                 pathName === menu.path
-                  ? "border border-l border-2 border-amber-500 text-amber-700 font-semibold"
+                  ? "border-l-4 border-amber-500 text-amber-700 font-semibold"
                   : "text-gray-700 hover:text-amber-500"
               }`}
             >
