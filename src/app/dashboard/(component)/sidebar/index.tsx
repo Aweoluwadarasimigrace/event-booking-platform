@@ -12,49 +12,46 @@ import { useLogout } from "../../hooks/useLogout";
 const SideBar = () => {
   const pathName = usePathname();
   const menuBar = [
-    { item: "Event", path: "/dashboard/events" , icon: <MdEventNote />},
-    { item: "Account", path: "/dashboard/profilepage" , icon: <FaRegUser />},
-    { item: "Help", path: "/dashboard/help", icon: <TbHelpOctagon />},
+    { item: "Event", path: "/dashboard/events", icon: <MdEventNote /> },
+    { item: "Account", path: "/dashboard/profilepage", icon: <FaRegUser /> },
+    { item: "Help", path: "/dashboard/help", icon: <TbHelpOctagon /> },
   ];
 
-const {handleLogout}=useLogout();
+  const { handleLogout } = useLogout();
   const [isOpen, setisOpen] = useState(false);
 
   return (
     <div className="flex">
       {/* side bar */}
-     <div className="h-screen hidden lg:block border-l border-gray-500 w-64 bg-white">
-  <div className="p-4">
-    <h1 className="text-amber-500 font-bold text-2xl">EVENTLOOP</h1>
-  </div>
+      <div className="h-screen hidden lg:block border-l border-gray-500 w-64 bg-white">
+        <div className="p-4">
+          <h1 className="text-amber-500 font-bold text-2xl">EVENTLOOP</h1>
+        </div>
 
-  <div className="flex flex-col p-2">
-    {menuBar.map((menu, index) => (
-    <Link
-  key={index}
-  href={menu.path}
-  className={ `flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
-    pathName === menu.path
-      ? "bg-amber-500 border border-l border-2 border-amber-500 text-amber-700 font-semibold"
-      : "text-gray-700 hover:text-amber-500"
-  }`}
->
-  <span className="text-2xl">{menu.icon}</span>
-  <span className="text-lg">{menu.item}</span>
-</Link>
+        <div className="flex flex-col p-2">
+          {menuBar.map((menu, index) => (
+            <Link
+              key={index}
+              href={menu.path}
+              className={`flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
+                pathName === menu.path
+                  ? "border border-l border-2 border-amber-500 text-amber-700 font-semibold"
+                  : "text-gray-700 hover:text-amber-500"
+              }`}
+            >
+              <span className="text-2xl">{menu.icon}</span>
+              <span className="text-lg">{menu.item}</span>
+            </Link>
+          ))}
 
-
-    ))}
-
-    <div className="mt-auto text-xl flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
-        <TbLogout2 />
-        <button className="text-md" onClick={handleLogout}>
-            logout
-        </button>
-    </div>
-  </div>
-</div>
-
+          <div className="mt-auto text-xl flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
+            <TbLogout2 />
+            <button className="text-md" onClick={handleLogout}>
+              logout
+            </button>
+          </div>
+        </div>
+      </div>
 
       <div className="bg-white lg:hidden w-full">
         <header>
@@ -69,33 +66,29 @@ const {handleLogout}=useLogout();
 
       {isOpen && (
         <div className="bg-opacity-50 z-50 lg-hidden">
-          <div className="w-full h-full bg-pink-500 p-4 fixed top-0 left-0">
+          <div className="w-full h-full bg-white p-4 fixed top-0 left-0">
             <button onClick={() => setisOpen(false)} className="mb-4 text-xl">
-             <FiX />
+              <FiX />
             </button>
             <div className="flex flex-col gap-4 text-center">
               {menuBar.map((menu, index) => (
-             <Link
-  key={index}
-  href={menu.path}
-  className={`flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
-    pathName === menu.path
-      ? "bg-amber-500 text-amber-700 font-semibold"
-      : "text-gray-700 hover:text-amber-500"
-  }`}
->
-  <span className="text-2xl">{menu.icon}</span>
-  <span className="text-lg">{menu.item}</span>
-</Link>
-
-
+                <Link
+                  key={index}
+                  href={menu.path}
+                  className={`flex items-center gap-3 p-3 rounded-md mb-3 transition-colors duration-200 ${
+                    pathName === menu.path
+                      ? "text-amber-700 font-semibold"
+                      : "text-gray-700 hover:text-amber-500"
+                  }`}
+                >
+                  <span className="text-2xl">{menu.icon}</span>
+                  <span className="text-lg">{menu.item}</span>
+                </Link>
               ))}
-               <div className="mt-auto flex items-center text-2xl gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
-        <TbLogout2 />
-        <button onClick={handleLogout}>
-            logout
-        </button>
-    </div>
+              <div className="mt-auto flex items-center text-lg gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
+                <TbLogout2 />
+                <button onClick={handleLogout}>logout</button>
+              </div>
             </div>
           </div>
         </div>
