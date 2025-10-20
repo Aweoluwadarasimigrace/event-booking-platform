@@ -30,12 +30,12 @@ const {handleLogout}=useLogout();
 
   <div className="flex flex-col p-2">
     {menuBar.map((menu, index) => (
-      <div className="flex items-center gap-2" key={index}>
+      <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer" key={index}>
           <span>{menu.icon}</span>
       <Link
         href={menu.path}
         className={`block p-2 mb-6 text-gray-700 text-xl ${
-          pathName === menu.path ? "text-amber-500 text-xl" : ""
+          pathName === menu.path ? "text-amber-700 text-xl" : ""
         }`}
       >
         {menu.item}
@@ -72,9 +72,10 @@ const {handleLogout}=useLogout();
             </button>
             <div className="flex flex-col gap-4 text-center">
               {menuBar.map((menu, index) => (
-              <div className="flex items-center gap-2 text-center " key={index}>
+              <div className="flex items-center gap-2 text-gray-700 p-2 cursor-pointer" key={index}>
                 <span>{menu.icon}</span>
                  <Link
+                 onClick={() => setisOpen(false)}
   href={menu.path}
   className={`block p-2 text-gray-700 text-xl mb-6 ${
     pathName === menu.path ? "text-amber-500 font-bold" : ""
