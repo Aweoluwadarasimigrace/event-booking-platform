@@ -30,17 +30,24 @@ const {handleLogout}=useLogout();
 
   <div className="flex flex-col p-2">
     {menuBar.map((menu, index) => (
-      <div className="mt-auto flex items-center text-center gap-2 text-gray-700 p-2 cursor-pointer" key={index}>
-          <p className="text-xl">{menu.icon}</p>
-      <Link
-        href={menu.path}
-        className={`block p-2 mb-6 text-gray-700 text-xl ${
-          pathName === menu.path ? "text-amber-700 bg-amber-500" : ""
-        }`}
-      >
-        {menu.item}
-      </Link>
-      </div>
+     <div
+  className="mt-auto flex items-center justify-center gap-2 p-2 cursor-pointer"
+  key={index}
+>
+  <p className="text-xl">{menu.icon}</p>
+
+  <Link
+    href={menu.path}
+    className={`block p-2 mb-6 text-xl rounded ${
+      pathName === menu.path
+        ? "text-amber-700 bg-amber-500 font-bold"
+        : "text-gray-700"
+    }`}
+  >
+    {menu.item}
+  </Link>
+</div>
+
     ))}
 
     <div className="mt-auto text-xl flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
@@ -72,18 +79,24 @@ const {handleLogout}=useLogout();
             </button>
             <div className="flex flex-col gap-4 text-center">
               {menuBar.map((menu, index) => (
-              <div className="flex items-center gap-2 text-gray-700 p-2 cursor-pointer" key={index}>
-                <span>{menu.icon}</span>
-                 <Link
-                 onClick={() => setisOpen(false)}
-  href={menu.path}
-  className={`block p-2 text-gray-700 text-xl mb-6 ${
-    pathName === menu.path ? "text-amber-500 font-bold" : ""
-  }`}
+             <div
+  className="mt-auto flex items-center justify-center gap-2 p-2 cursor-pointer"
+  key={index}
 >
-  {menu.item}
-</Link>
-              </div>
+  <p className="text-xl">{menu.icon}</p>
+
+  <Link
+    href={menu.path}
+    className={`block p-2 mb-6 text-xl rounded ${
+      pathName === menu.path
+        ? "text-amber-700 bg-amber-500 font-bold"
+        : "text-gray-700"
+    }`}
+  >
+    {menu.item}
+  </Link>
+</div>
+
               ))}
                <div className="mt-auto flex items-center gap-2 text-gray-700 p-2 cursor-pointer hover:text-red-700">
         <TbLogout2 />
