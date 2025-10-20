@@ -9,7 +9,7 @@ export const useLogout = () => {
   const handleLogout = async () => {
     try {
       sessionStorage.removeItem("token");
-      const res = await apiClient.post("/auth/logout");
+      const res = await apiClient.post("api/user/logout");
       console.log(res.data)
       toast.success(res.data.message);
      Router.push("/auth/login");
