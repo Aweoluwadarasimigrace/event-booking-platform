@@ -15,7 +15,7 @@ export default function RootLayout({
 
      <div className="flex md:flex-row flex-col" >
      <SideBar />
-  <div className="p-8 flex-1 bg-red-500">
+  <div className="p-14 flex-1">
       {children}
   </div>
      </div>
