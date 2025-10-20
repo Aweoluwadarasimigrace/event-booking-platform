@@ -35,7 +35,7 @@ const {handleLogout}=useLogout();
       <Link
         href={menu.path}
         className={`block p-2 mb-6 text-gray-700 text-xl ${
-          pathName === menu.path ? "text-amber-700 text-xl" : ""
+          pathName === menu.path ? "text-amber-700 bg-amber-500" : ""
         }`}
       >
         {menu.item}
