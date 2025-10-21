@@ -49,7 +49,7 @@ const handleSubmit=async (e:React.FormEvent)=>{
         if(res.data){
             sessionStorage.setItem("token", res.data.token)
             toast.success(res.data.message)
-            Router.push("/dashboard")
+            Router.push("/dashboard/events")
         }
     } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
