@@ -13,10 +13,11 @@ export const useLogout = () => {
       console.log(res.data)
       toast.success(res.data.message);
      Router.push("/auth/login");
-    } catch (error) {
+    } catch {
       toast.error("Failed to logout, Try Again Later");
     }
   };
+
 
   return {
     handleLogout
