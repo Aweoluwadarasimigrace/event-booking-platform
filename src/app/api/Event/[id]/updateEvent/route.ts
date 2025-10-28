@@ -57,7 +57,7 @@ export const PATCH = async(request: NextRequest, {params}: ParamsType)=>{
       { status: 200 }
     );
     
-  } catch (error) {
+  } catch (error: unknown) {
     return NextResponse.json({ message: "Internal Server Error" }, { status: 500 });
   }
 }

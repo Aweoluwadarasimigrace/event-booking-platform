@@ -7,7 +7,7 @@ export const GET = async(req: NextRequest)=>{
         await connectDB();
         const user = await verifyToken(req);
         return NextResponse.json({ user }, { status: 200 });
-    } catch (error) {
+    } catch (error: any) {
         return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 }

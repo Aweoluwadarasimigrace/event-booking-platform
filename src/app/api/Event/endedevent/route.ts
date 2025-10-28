@@ -2,7 +2,7 @@ import { connectDB } from "@/app/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../../model/event.model";
 
-export const GET = async (req: NextRequest) => {
+export const GET = async (_req: NextRequest) => {
   try {
     await connectDB();
 
@@ -28,10 +28,18 @@ export const GET = async (req: NextRequest) => {
       },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error fetching ended events:", error);
+
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { message: "Error fetching ended events", error: error.message },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json(
-      { message: "Error fetching ended events", error: error.message },
+      { message: "An unexpected error occurred" },
       { status: 500 }
     );
   }

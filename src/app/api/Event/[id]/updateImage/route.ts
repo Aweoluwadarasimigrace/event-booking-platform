@@ -46,7 +46,7 @@ export const PATCH = async (request: NextRequest, { params }: ParamsType) => {
       { status: 200 }
     );
 
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error updating image:", error);
     return NextResponse.json({ message: "Error updating image" }, { status: 500 });
   }

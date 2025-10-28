@@ -11,7 +11,7 @@ cloudinary.v2.config({
 
  export const uploadToCloudinary = (fileBuffer: Buffer) => {
   return new Promise((resolve, reject) => {
-    let stream = cloudinary.v2.uploader.upload_stream(
+    const stream = cloudinary.v2.uploader.upload_stream(
       { folder: "inventory" }, // optional folder name
       (error, result) => {
         if (error) return reject(error);
