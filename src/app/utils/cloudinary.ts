@@ -22,4 +22,3 @@ cloudinary.v2.config({
   });
 };
 
-
