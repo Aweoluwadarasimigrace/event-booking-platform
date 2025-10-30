@@ -8,6 +8,7 @@ type ParamsType = {
 };
 
 
+
 export const GET = async (req: NextRequest, { params }: ParamsType) => {
   try {
     await connectDB();
