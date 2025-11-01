@@ -4,11 +4,9 @@ import { connectDB } from "@/app/utils/connect";
 import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 
-type ParamsType = {
-  params: { id: string };
-};
 
-export const PATCH = async (request: NextRequest, { params }: ParamsType) => {
+
+export const PATCH = async (request: NextRequest, { params }: { params: { id: string } }) => {
   try {
     await connectDB();
     const user = await verifyToken(request);

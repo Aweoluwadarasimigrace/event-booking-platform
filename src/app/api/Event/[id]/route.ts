@@ -3,13 +3,9 @@ import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../../model/event.model";
 
-type ParamsType = {
-  params: { id: string };
-};
 
 
-
-export const GET = async (req: NextRequest, { params }: ParamsType) => {
+export const GET = async (req: NextRequest, { params }: { params: { id: string } }) => {
      const { id } = params;
   try {
     await connectDB();
