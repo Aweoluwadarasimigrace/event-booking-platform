@@ -10,14 +10,13 @@ type ParamsType = {
 
 
 export const GET = async (req: NextRequest, { params }: ParamsType) => {
+     const { id } = params;
   try {
     await connectDB();
     const user = await verifyToken(req);
     if (!user) {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
-
-    const { id } = params;
 
     const event = await Event.findById(id);
     if (!event) {
