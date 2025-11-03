@@ -2,16 +2,17 @@ import Event from "@/app/api/model/event.model";
 import Ticket from "@/app/api/model/ticket.model";
 import { connectDB } from "@/app/utils/connect";
 import { verifyToken } from "@/app/utils/middleware";
+import { ParamType } from "@/type";
 import { NextRequest, NextResponse } from "next/server";
 
 
 
-export const PATCH = async(request: NextRequest, {params}: { params: { id: string } })=>{
+export const PATCH = async(request: NextRequest, {params}: ParamType) =>{
     
     try {
         await connectDB();
         const user = await verifyToken(request);
-        const {id} = params;
+        const {id} = await params;
         const body = await request.json()
  const event = await Event.findOne({ _id: id, createdBy: user._id });
         

@@ -2,11 +2,12 @@ import { connectDB } from "@/app/utils/connect";
 import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../../model/event.model";
+import { ParamType } from "@/type";
 
 
 
-export const GET = async (req: NextRequest, { params }: { params: { id: string } }) => {
-     const { id } = params;
+export const GET = async (req: NextRequest, { params }: ParamType) => {
+     const { id } = await params;
   try {
     await connectDB();
     const user = await verifyToken(req);
