@@ -2,16 +2,17 @@ import Event from "@/app/api/model/event.model";
 import { uploadToCloudinary } from "@/app/utils/cloudinary";
 import { connectDB } from "@/app/utils/connect";
 import { verifyToken } from "@/app/utils/middleware";
+import { ParamType } from "@/type";
 import { NextRequest, NextResponse } from "next/server";
 
 
 
-export const PATCH = async (request: NextRequest, { params }: { params: { id: string } }) => {
+export const PATCH = async (request: NextRequest, { params }: ParamType) => {
   try {
     await connectDB();
     const user = await verifyToken(request);
 
-    const { id } = params;
+    const { id } = await params;
     let uploadedImageUrl = "";
 
     // ✅ Extract image file
