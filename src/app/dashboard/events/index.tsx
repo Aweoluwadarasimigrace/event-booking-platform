@@ -10,6 +10,9 @@ const [page, setPage] = useState(1);
     fetchEvent(page);
 
   }, [page]);
+  console.log(event);
+  console.log(loading);
+  console.log(error);
 
   return (
     <div>
@@ -20,7 +23,7 @@ const [page, setPage] = useState(1);
       {error && <p>Error: {error}</p>}
 
 
-      {event && event.length > 0 ? (
+      {/* {event && event.length > 0 ? (
         <div>
           {event.map((eventItem) => (
             <div key={eventItem.id}>
@@ -32,6 +35,8 @@ const [page, setPage] = useState(1);
       ) : (
         <p>No events found.</p>
       )}
+ 
+      */}
       <button onClick={() => setPage(page + 1)}>Load More</button>
     </div>
     
