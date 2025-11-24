@@ -3,15 +3,18 @@ import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../../model/event.model";
 
-
-export const POST = async(req: NextRequest)=>{
-   try {
+export const POST = async (req: NextRequest) => {
+  try {
     await connectDB();
     const user = await verifyToken(req);
+    if (!user) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
 
     const body = await req.json();
 
-    const {title,
+    const {
+      title,
       description,
       category,
       format,
@@ -22,9 +25,10 @@ export const POST = async(req: NextRequest)=>{
       endDate,
       startTime,
       endTime,
-      meridiem,} = body;
+      meridiem,
+    } = body;
 
-         if (
+    if (
       !title ||
       !category ||
       !format ||
@@ -40,10 +44,11 @@ export const POST = async(req: NextRequest)=>{
       );
     }
 
-      const event = await Event.create({
+    const event = await Event.create({
       title,
       description,
-      image: "https://res.cloudinary.com/datfugth6/image/upload/v1761205537/downloadss_y8c47e.jpg",
+      image:
+        "https://res.cloudinary.com/datfugth6/image/upload/v1761205537/downloadss_y8c47e.jpg",
       category,
       format,
       isVirtual,
@@ -57,16 +62,14 @@ export const POST = async(req: NextRequest)=>{
       createdBy: user._id,
     });
 
-
-     return NextResponse.json(
+    return NextResponse.json(
       { message: "Event created successfully", event },
       { status: 201 }
     );
-
-   } catch (error) {
-     return NextResponse.json(
-       { message: "Error creating event", error },
-       { status: 500 }
-     );
-   }
-}
+  } catch (error) {
+    return NextResponse.json(
+      { message: "Error creating event", error },
+      { status: 500 }
+    );
+  }
+};

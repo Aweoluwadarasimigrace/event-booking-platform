@@ -63,8 +63,8 @@ const Profilepage = () => {
 
   return (
     <div className="bg-white w-full h-full p-6">
-      <div>
-        <h1 className="border-b text-2xl font-semibold mb-10">Account</h1>
+      <div className="border-b pb-4 border-gray-300">
+        <h1 className="text-2xl font-semibold mb-10">Account</h1>
       </div>
 
       <div className="mt-6 font-semibold text-lg tracking-1">
@@ -158,7 +158,7 @@ const Profilepage = () => {
           </div>
         </div>
 
-        <div className="px-6 py-4 rounded-b-xl flex justify-end">
+        <div className="px-6 py-4 rounded-b-xl flex justify-center">
           <button
             type="submit"
             disabled={isLoading}
