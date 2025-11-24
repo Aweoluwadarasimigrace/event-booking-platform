@@ -5,8 +5,8 @@ type pageParams = {
 }
 export const fetchEventCreated = async({ page }: pageParams) => {
     try {
-        const res = await apiClient.get(`/api/Event?page=${page || 1}&limit=10`)
-        console.log(res.data)
+        const res = await apiClient.get(`/api/Event?page=${page}&limit=10`)
+        console.log(res.data, "data")
         return res.data
     } catch (error) {
         console.error("Error fetching Events", error)
