@@ -11,7 +11,6 @@ export const fetchEventCreated = async ({ page = 1 }: pageParams) => {
     if (!res?.data) {
       throw new Error("Empty response from server");
     }
-console.log(res.data);
     return res.data; // contains page, limit, totalEvents, totalPages, events
   } catch (error) {
     console.error("Error fetching Events", error);
