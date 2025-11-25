@@ -28,7 +28,7 @@ export const GET = async (request: NextRequest) => {
       .limit(limit);
 
     if (!events || events.length === 0) {
-      return NextResponse.json({ message: "No events found" }, { status: 404 });
+      return NextResponse.json({ message: "No events found" }, { status: 200 });
     }
 
     return NextResponse.json( {

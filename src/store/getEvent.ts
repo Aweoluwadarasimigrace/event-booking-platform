@@ -27,8 +27,8 @@ type EventData = {
 type eventStore = {
   event: EventData[] | null;
   loading: boolean;
-  totalPages?: number;
-  totalEvents?: number;
+  totalPages?: 0;
+  totalEvents?: 0;
   error: string | null;
   fetchEvent: (page: number) => Promise<void>;
 };
