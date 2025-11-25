@@ -7,7 +7,7 @@ import { FaRegUser } from "react-icons/fa6";
 import { FiMenu, FiX } from "react-icons/fi";
 import { MdEventNote } from "react-icons/md";
 import { TbHelpOctagon, TbLogout2 } from "react-icons/tb";
-import { useLogout } from "../../hooks/useLogout";
+import { useLogout } from "../../../hooks/useLogout";
 
 const SideBar = () => {
   const pathName = usePathname();
