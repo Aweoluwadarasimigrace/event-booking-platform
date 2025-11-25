@@ -1,6 +1,6 @@
 "use client";
 
-import Loading from "@/app/Loading";
+import Loading from "@/app/(components)/Loading";
 import useUserStore from "@/store/getCurrentUser";
 import React, { useEffect, useState } from "react";
 import { LuAsterisk } from "react-icons/lu";

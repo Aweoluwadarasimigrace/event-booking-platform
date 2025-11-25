@@ -1,5 +1,9 @@
+"use client";
+
 import type { Metadata } from "next";
 import SideBar from "./(component)/sidebar";
+import ProtectedRoute from "../(components)/ProtectedRoute";
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -8,17 +12,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-
-     <div className="flex md:flex-row flex-col" >
-     <SideBar />
-  <div className="p-9 flex-1">
-      {children}
-  </div>
-     </div>
-         
+    <ProtectedRoute>
+      <div className="flex md:flex-row flex-col">
+        <SideBar />
+        <div className="p-9 flex-1">{children}</div>
+      </div>
+    </ProtectedRoute>
   );
 }
