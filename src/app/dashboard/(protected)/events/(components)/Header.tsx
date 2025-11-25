@@ -1,3 +1,5 @@
+"use client"
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
@@ -12,9 +14,9 @@ const Header = () => {
   return (
     <div>
         <div className='flex justify-between items-center mb-10 border-b pb-4 border-gray-300'>
-            {headerItems.map(({item, path}) => (
-                <p key={path} className={path === pathName ? 'font-bold' : ''}>
-                    <Link href={path}>{item}</Link>
+            {headerItems.map((menu, index) => (
+                <p key={index} className={menu.path === pathName ? 'font-bold' : ''}>
+                    <Link href={menu.path}>{menu.item}</Link>
                 </p>
             ))}
         </div>
