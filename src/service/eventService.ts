@@ -1,14 +1,20 @@
-import { apiClient } from "@/app/lib/client"
+import { apiClient } from "@/app/lib/client";
 
 type pageParams = {
-    page?: number;
-}
-export const fetchEventCreated = async({ page }: pageParams) => {
-    try {
-        const res = await apiClient.get(`/api/Event?page=${page}&limit=10`)
-        console.log(res.data, "data")
-        return res.data
-    } catch (error) {
-        console.error("Error fetching Events", error)
+  page?: number;
+};
+
+export const fetchEventCreated = async ({ page = 1 }: pageParams) => {
+  try {
+    const res = await apiClient.get(`/api/Event?page=${page}&limit=10`);
+
+    if (!res?.data) {
+      throw new Error("Empty response from server");
     }
-}
+console.log(res.data);
+    return res.data; // contains page, limit, totalEvents, totalPages, events
+  } catch (error) {
+    console.error("Error fetching Events", error);
+    throw error; // so your Zustand store can catch it
+  }
+};
