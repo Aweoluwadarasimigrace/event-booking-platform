@@ -18,6 +18,7 @@ export const POST = async (req: NextRequest) => {
       description,
       category,
       format,
+      country,
       isVirtual,
       location,
       meetingLink,

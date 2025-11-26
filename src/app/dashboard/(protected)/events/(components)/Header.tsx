@@ -13,7 +13,7 @@ const Header = () => {
     ];
   return (
     <div>
-        <div className='flex justify-between items-center mb-10 border-b pb-4 border-gray-300'>
+        <div className='flex gap-3 items-center mb-10 border-b pb-4 border-gray-300'>
             {headerItems.map((menu, index) => (
                 <p key={index} className={menu.path === pathName ? 'font-bold' : ''}>
                     <Link href={menu.path}>{menu.item}</Link>

@@ -2,8 +2,11 @@ import { fetchEventCreated } from "@/service/eventService";
 import { create } from "zustand";
 
 type Ticket = {
-  type: string;
-  quantity: number;
+name: string;        // e.g. "VIP Ticket"
+  isPaid: boolean;     // true = paid, false = free
+  price: number;       // price in your currency
+  quantity: number;    // total tickets available
+  limitPerUser: number; // max tickets per user
 };
 
 type EventData = {

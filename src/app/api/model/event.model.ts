@@ -41,6 +41,7 @@ const EventSchema = new mongoose.Schema(
     },
 
     isVirtual: { type: Boolean, default: false },
+    country: {type: String , enum:["nigeria","ghana","south africa","kenya","tanzania","uganda"]},
     location: { type: String },
     meetingLink: { type: String },
     startDate: { type: Date, required: true },
