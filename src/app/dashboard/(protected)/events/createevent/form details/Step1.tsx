@@ -25,9 +25,9 @@ const formats = [
 ];
 
 const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uganda"];
-const meridiems = ["AM", "PM"];
+
   return (
-    <div className="max-w-xl mx-auto p-6 border rounded-xl space-y-6 bg-white shadow">
+    <div className="max-w-[1200px] mx-auto p-6">
   
   {/* Title */}
   <div className="flex flex-col space-y-1">
@@ -58,7 +58,7 @@ const meridiems = ["AM", "PM"];
   {/* Category (Box Style) */}
   <div className="flex flex-col space-y-2">
     <label className="font-medium text-gray-700">Category</label>
-    <div className="grid grid-cols-2 gap-2">
+    <div className="flex flex-wrap gap-2">
       {categories.map(c => (
         <div
           key={c}
@@ -115,7 +115,6 @@ const meridiems = ["AM", "PM"];
       onChange={e => updateField("isVirtual", e.target.checked)}
     />
     Virtual Event
-     {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
   </label>
 
   {/* Location or Link */}
@@ -162,21 +161,6 @@ const meridiems = ["AM", "PM"];
     </div>
 
     <div className="flex flex-col space-y-1">
-      <label className="font-medium text-gray-700">End Date</label>
-      <input
-        type="date"
-        value={data.endDate}
-        onChange={e => updateField("endDate", e.target.value)}
-        className="border rounded-lg p-3 w-full"
-        required
-      />
-       {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-    </div>
-  </div>
-
-  {/* Time */}
-  <div className="grid grid-cols-3 gap-3">
-    <div className="flex flex-col space-y-1">
       <label className="font-medium text-gray-700">Start Time</label>
       <input
         type="time"
@@ -187,6 +171,22 @@ const meridiems = ["AM", "PM"];
       />
        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
     </div>
+  </div>
+
+  {/* Time */}
+  <div className="grid grid-cols-3 gap-3">
+     <div className="flex flex-col space-y-1">
+      <label className="font-medium text-gray-700">End Date</label>
+      <input
+        type="date"
+        value={data.endDate}
+        onChange={e => updateField("endDate", e.target.value)}
+        className="border rounded-lg p-3 w-full"
+        required
+      />
+       {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+    </div>
+
 
     <div className="flex flex-col space-y-1">
       <label className="font-medium text-gray-700">End Time</label>
@@ -200,19 +200,6 @@ const meridiems = ["AM", "PM"];
        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
     </div>
 
-    <div className="flex flex-col space-y-1">
-      <label className="font-medium text-gray-700">AM/PM</label>
-      <select
-        value={data.meridiem}
-        onChange={e => updateField("meridiem", e.target.value)}
-        className="border rounded-lg p-3 w-full"
-      >
-        {meridiems.map(m => (
-          <option key={m} value={m}>{m}</option>
-        ))}
-      </select>
-       {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-    </div>
   </div>
 
 </div>

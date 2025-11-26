@@ -29,7 +29,6 @@ type EventFormData = {
   endDate: string;
   startTime: string;
   endTime: string;
-  meridiem: string;
   tickets: Ticket[];
 };
 
@@ -46,7 +45,6 @@ const initialData: EventFormData = {
   endDate: "",
   startTime: "",
   endTime: "",
-  meridiem: "",
   location: "",
   image: null,
   tickets: [],
@@ -71,8 +69,7 @@ export default function useMultiForm() {
       !formData.startDate ||
       !formData.endDate ||
       !formData.startTime ||
-      !formData.endTime ||
-      !formData.meridiem
+      !formData.endTime 
     ) {
       setErrors({ message: "Please fill all required fields" });
       return;
@@ -94,7 +91,6 @@ export default function useMultiForm() {
         startTime: formData.startTime,
         endTime: formData.endTime,
         location: formData.isVirtual ? null : formData.location,
-        meridiem: formData.meridiem,
       });
       setEventId(res?.data?._id);
       setStep(2);

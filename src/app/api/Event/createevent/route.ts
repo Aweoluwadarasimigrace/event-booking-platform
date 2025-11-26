@@ -26,7 +26,6 @@ export const POST = async (req: NextRequest) => {
       endDate,
       startTime,
       endTime,
-      meridiem,
     } = body;
 
     if (
@@ -34,10 +33,10 @@ export const POST = async (req: NextRequest) => {
       !category ||
       !format ||
       !startDate ||
+      !country ||
       !endDate ||
       !startTime ||
-      !endTime ||
-      !meridiem
+      !endTime
     ) {
       return NextResponse.json(
         { message: "Missing required fields" },
@@ -52,6 +51,7 @@ export const POST = async (req: NextRequest) => {
         "https://res.cloudinary.com/datfugth6/image/upload/v1761205537/downloadss_y8c47e.jpg",
       category,
       format,
+      country,
       isVirtual,
       location: isVirtual ? null : location,
       meetingLink: isVirtual ? meetingLink : null,
@@ -59,7 +59,6 @@ export const POST = async (req: NextRequest) => {
       endDate,
       startTime,
       endTime,
-      meridiem,
       createdBy: user._id,
     });
 

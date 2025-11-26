@@ -48,7 +48,6 @@ const EventSchema = new mongoose.Schema(
     endDate: { type: Date, required: true },
     startTime: { type: String, required: true },
     endTime: { type: String, required: true },
-    meridiem: { type: String, enum: ["AM", "PM"], required: true },
     tickets: [
       {
         type: mongoose.Schema.Types.ObjectId,
