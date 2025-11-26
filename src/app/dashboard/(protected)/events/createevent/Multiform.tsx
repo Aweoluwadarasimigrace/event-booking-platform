@@ -143,7 +143,7 @@ export default function useMultiForm() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 border rounded">
+    <div className="max-w-[1200px] w-full p-6 mx-auto">
       {step === 1 && <Step1 data={formData} updateField={updateField} errors={errors} />}
       {step === 2 && <Step2 data={formData} updateField={updateField} errors={errors} />}
       {step === 3 && <Step3 data={formData} updateField={updateField} errors={errors} />}
