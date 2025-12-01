@@ -102,10 +102,6 @@ export default function useMultiForm() {
   };
 
   const handleStep2 = async () => {
-    if (!formData.image) {
-      setErrors({ message: "Please upload an image" });
-      return;
-    }
     if (!eventId || !formData.image) return;
     setLoading(true);
     try {
@@ -145,7 +141,7 @@ export default function useMultiForm() {
   return (
     <div className="max-w-[1200px] w-full p-6 mx-auto">
       {step === 1 && <Step1 data={formData} updateField={updateField} errors={errors} />}
-      {step === 2 && <Step2 data={formData} updateField={updateField} errors={errors} />}
+      {step === 2 && <Step2 data={formData} updateField={updateField} />}
       {step === 3 && <Step3 data={formData} updateField={updateField} errors={errors} />}
 
      <div className="flex justify-between mt-6">
