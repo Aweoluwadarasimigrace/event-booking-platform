@@ -1,6 +1,6 @@
 
 
-const Step2 = ({ data, updateField, error }: any) => {
+const Step2 = ({ data, updateField, errors }: any) => {
   return (
     <div className="space-y-4">
       <div className="flex flex-col space-y-2">
@@ -28,7 +28,7 @@ const Step2 = ({ data, updateField, error }: any) => {
             </p>
           )}
         </div>
-        {error.message && <p className="text-red-500 text-sm">{error.message}</p>}
+        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
 
       </div>
     </div>
