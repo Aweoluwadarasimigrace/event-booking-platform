@@ -117,11 +117,12 @@ if (!eventId) {
     try {
       const fd = new FormData();
       fd.append("file", formData.image);
-      const res = await apiClient.patch(`/api/Event/${eventId}/updateImage`, fd,    {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+      const id = eventId;
+      const res = await apiClient.patch(`/api/Event/${id}/updateImage`, fd, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       toast.success("Image uploaded successfully!");
       setStep(3);
     } catch (error) {
