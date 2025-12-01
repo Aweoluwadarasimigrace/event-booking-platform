@@ -102,12 +102,21 @@ export default function useMultiForm() {
   };
 
   const handleStep2 = async () => {
-    if (!eventId || !formData.image) return;
+   if (!formData.image) {
+  setErrors({ message: "Please upload an image" });
+  return;
+}
+
+if (!eventId) {
+  setErrors({ message: "Missing event ID" });
+  return;
+}
+
     setLoading(true);
     try {
       const fd = new FormData();
       fd.append("file", formData.image);
-      const res = await apiClient.post(`/api/Event/${eventId}/updateImage`, fd);
+      const res = await apiClient.patch(`/api/Event/${eventId}/updateImage`, fd);
       setStep(3);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -141,7 +150,7 @@ export default function useMultiForm() {
   return (
     <div className="max-w-[1200px] w-full p-6 mx-auto">
       {step === 1 && <Step1 data={formData} updateField={updateField} errors={errors} />}
-      {step === 2 && <Step2 data={formData} updateField={updateField} />}
+      {step === 2 && <Step2 data={formData} updateField={updateField} errors={errors} />}
       {step === 3 && <Step3 data={formData} updateField={updateField} errors={errors} />}
 
      <div className="flex justify-between mt-6">
