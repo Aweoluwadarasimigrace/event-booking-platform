@@ -92,6 +92,7 @@ export default function useMultiForm() {
         endTime: formData.endTime,
         location: formData.isVirtual ? null : formData.location,
       });
+      console.log("Event created:", res?.data);
       setEventId(res?.data?._id);
       setStep(2);
     } catch (error) {
