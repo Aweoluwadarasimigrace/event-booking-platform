@@ -8,7 +8,10 @@ import { IoIosArrowBack } from 'react-icons/io'
 const CreateEvent = () => {
   return (
     <div>
-        <Link href="/dashboard/events" className="text-black">back <IoIosArrowBack /></Link>
+       <div className='flex items-center gap-2 mb-4 text-amber-500 hover:text-amber-700 cursor-pointer'>
+        <IoIosArrowBack />
+         <Link href="/dashboard/events" className="text-black">back</Link>
+       </div>
         <Multiform />
     </div>
   )

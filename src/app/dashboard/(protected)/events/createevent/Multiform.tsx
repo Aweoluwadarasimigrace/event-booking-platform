@@ -148,25 +148,57 @@ export default function useMultiForm() {
       {step === 2 && <Step2 data={formData} updateField={updateField} errors={errors} />}
       {step === 3 && <Step3 data={formData} updateField={updateField} errors={errors} />}
 
-      <div className="mt-4 flex justify-between">
-        {step > 1 && <button onClick={() => setStep(step - 1)}>Back</button>}
+     <div className="flex justify-between mt-6">
+  {/* Back Button */}
+  {step > 1 && (
+    <button
+      onClick={() => setStep(step - 1)}
+      className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+    >
+      Back
+    </button>
+  )}
 
-        {step === 1 && (
-          <button onClick={handleStep1} disabled={loading}>
-            {loading ? "Saving..." : "Next"}
-          </button>
-        )}
-        {step === 2 && (
-          <button onClick={handleStep2} disabled={loading}>
-            {loading ? "Uploading..." : "Next"}
-          </button>
-        )}
-        {step === 3 && (
-          <button onClick={handleStep3} disabled={loading}>
-            {loading ? "Saving..." : "Finish"}
-          </button>
-        )}
-      </div>
+  {/* Next / Finish Button */}
+  <div className="ml-auto">
+    {step === 1 && (
+      <button
+        onClick={handleStep1}
+        disabled={loading}
+        className={`px-4 py-2 rounded-lg text-black transition ${
+          loading ? "bg-amber-300 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-700"
+        }`}
+      >
+        {loading ? "Saving..." : "Next"}
+      </button>
+    )}
+
+    {step === 2 && (
+      <button
+        onClick={handleStep2}
+        disabled={loading}
+        className={`px-4 py-2 rounded-lg text-black transition ${
+          loading ? "bg-amber-300 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-700"
+        }`}
+      >
+        {loading ? "Uploading..." : "Next"}
+      </button>
+    )}
+
+    {step === 3 && (
+      <button
+        onClick={handleStep3}
+        disabled={loading}
+        className={`px-4 py-2 rounded-lg text-black transition ${
+          loading ? "bg-amber-300 cursor-not-allowed" : "bg-amber-600 hover:bg-amber-700"
+        }`}
+      >
+        {loading ? "Saving..." : "Finish"}
+      </button>
+    )}
+  </div>
+</div>
+
     </div>
   );
 }

@@ -40,20 +40,20 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
 
         <div>
             <h1 className="text-3xl font-bold mb-4">Hey {user?.firstname}!</h1>
-            <p className="mb-4 text-[#c3c4c7]">Let's set up your event - it will only take a few minutes</p>
+            <p className="mb-4 text-[#7a7a7b]">Let's set up your event - it will only take a few minutes</p>
         </div>
   
   {/* Title */}
 
   <h1 className="text-xl font-bold mb-4">Event Details</h1>
   <div className="flex flex-col space-y-1 mb-3">
-    <label className="font-medium text-[#c4c5c8] mb-3">Event Title</label>
+    <label className="font-medium text-[#7a7a7b] mb-3">Event Title</label>
     <input
       type="text"
       placeholder="Enter event title"
       value={data.title}
       onChange={e => updateField("title", e.target.value)}
-      className="border rounded-lg p-3 w-full placeholder-[#c4c5c8]"
+      className="border rounded-lg p-3 w-full placeholder-[#7a7a7b]"
       required
     />
     {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
@@ -61,12 +61,12 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
 
   {/* Description */}
   <div className="flex flex-col space-y-1 mb-3">
-    <label className="font-medium text-[#c4c5c8] mb-3">Description</label>
+    <label className="font-medium text-[#7a7a7b] mb-3">Description</label>
     <textarea
       placeholder="Write about the event..."
       value={data.description}
       onChange={e => updateField("description", e.target.value)}
-      className="border rounded-lg p-3 w-full h-28 mb-3 placeholder-[#c4c5c8]"
+      className="border rounded-lg p-3 w-full h-28 mb-3 placeholder-[#7a7a7b]"
     />
      {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
   </div>
@@ -76,7 +76,7 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
 
   {/* Country */}
   <div className="flex flex-col space-y-1 mb-3">
-    <label className="font-medium text-[#c4c5c8] mb-3">Country</label>
+    <label className="font-medium text-[#7a7a7b] mb-3">Country</label>
     <select
       value={data.country}
       onChange={e => updateField("country", e.target.value)}
@@ -94,20 +94,34 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
   {/* Location or Link */}
   {!data.isVirtual && (
     <div className="flex flex-col space-y-1">
-      <label className="font-medium text-[#c4c5c8]">Location</label>
+      <label className="font-medium text-[#7a7a7b]">Location</label>
       <input
         type="text"
         placeholder="Enter event location"
         value={data.location}
         onChange={e => updateField("location", e.target.value)}
-        className="border rounded-lg p-3 w-full placeholder-[#c4c5c8]"
+        className="border rounded-lg p-3 w-full placeholder-[#7a7a7b]"
       />
       {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
     </div>
   )}
 
-  {/* Virtual Check */}
-  <label className="flex items-center gap-2 text-[#c4c5c8] font-medium mb-3">
+  {data.isVirtual && (
+    <div className="flex flex-col space-y-1 mb-3">
+      <label className="font-medium text-[#7a7a7b]">Meeting Link</label>
+      <input
+        type="text"
+        placeholder="Enter meeting link"
+        value={data.meetingLink}
+        onChange={e => updateField("meetingLink", e.target.value)}
+        className="border rounded-lg p-3 w-full placeholder-[#7a7a7b]"
+      />
+        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
+    </div>
+  )}
+
+{/* Virtual Check */}
+  <label className="flex items-center gap-2 text-[#7a7a7b] font-medium mb-3">
     <input
       type="checkbox"
       checked={data.isVirtual}
@@ -116,24 +130,10 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
     Virtual Event
   </label>
 
-  {data.isVirtual && (
-    <div className="flex flex-col space-y-1 mb-3">
-      <label className="font-medium text-[#c4c5c8]">Meeting Link</label>
-      <input
-        type="text"
-        placeholder="Enter meeting link"
-        value={data.meetingLink}
-        onChange={e => updateField("meetingLink", e.target.value)}
-        className="border rounded-lg p-3 w-full"
-      />
-        {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-    </div>
-  )}
-
 <h1 className="text-xl font-bold mb-4">Event Format</h1>
 {/* Format */}
   <div className="flex flex-col space-y-1 mb-3">
-    <label className="font-medium text-[#c4c5c8] mb-3">Format</label>
+    <label className="font-medium text-[#7a7a7b] mb-3">Format</label>
     <select
       value={data.format}
       onChange={e => updateField("format", e.target.value)}
@@ -152,7 +152,7 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
 <h1 className="text-xl font-bold mb-4">Event Category</h1>
   {/* Category (Box Style) */}
   <div className="flex flex-col space-y-2 mb-3">
-    <label className="font-medium text-[#c4c5c8] mb-3">Category</label>
+    <label className="font-medium text-[#7a7a7b] mb-3">Category</label>
     <div className="flex flex-wrap gap-2">
       {categories.map(c => (
         <div
@@ -174,7 +174,7 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
 {/* Dates */}
   <div className="grid grid-cols-2 gap-3 mb-3">
     <div className="flex flex-col space-y-1">
-      <label className="font-medium text-[#c4c5c8] mb-3">Start Date</label>
+      <label className="font-medium text-[#7a7a7b] mb-3">Start Date</label>
       <input
         type="date"
         value={data.startDate}
@@ -186,7 +186,7 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
     </div>
 
     <div className="flex flex-col space-y-1">
-      <label className="font-medium text-[#c4c5c8] mb-3">Start Time</label>
+      <label className="font-medium text-[#7a7a7b] mb-3">Start Time</label>
       <input
         type="time"
         value={data.startTime}
@@ -201,7 +201,7 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
   {/* Time */}
   <div className="grid grid-cols-3 gap-3 mb-3">
      <div className="flex flex-col space-y-1">
-      <label className="font-medium text-[#c4c5c8] mb-3">End Date</label>
+      <label className="font-medium text-[#7a7a7b] mb-3">End Date</label>
       <input
         type="date"
         value={data.endDate}
@@ -214,7 +214,7 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
 
 
     <div className="flex flex-col space-y-1">
-      <label className="font-medium text-[#c4c5c8] mb-3">End Time</label>
+      <label className="font-medium text-[#7a7a7b] mb-3">End Time</label>
       <input
         type="time"
         value={data.endTime}
