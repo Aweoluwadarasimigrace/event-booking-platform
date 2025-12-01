@@ -92,7 +92,7 @@ export default function useMultiForm() {
         endTime: formData.endTime,
         location: formData.isVirtual ? null : formData.location,
       });
-      console.log("Event created:", res?.data);
+     toast.success("Event details created successfully!");
       setEventId(res?.data?.event?._id);
       setStep(2);
     } catch (error) {
@@ -117,7 +117,12 @@ if (!eventId) {
     try {
       const fd = new FormData();
       fd.append("file", formData.image);
-      const res = await apiClient.patch(`/api/Event/${eventId}/updateImage`, fd);
+      const res = await apiClient.patch(`/api/Event/${eventId}/updateImage`, fd,    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+      toast.success("Image uploaded successfully!");
       setStep(3);
     } catch (error) {
       console.error("Error uploading image:", error);
