@@ -165,7 +165,7 @@ export default function useMultiForm() {
       <button
         onClick={handleStep1}
         disabled={loading}
-        className={`px-4 py-8 rounded-lg text-white transition ${
+        className={`px-8 py-2 rounded-lg text-white transition ${
           loading ? "bg-amber-300 cursor-not-allowed" : "bg-amber-500 hover:bg-amber-600"
         }`}
       >
@@ -177,7 +177,7 @@ export default function useMultiForm() {
       <button
         onClick={handleStep2}
         disabled={loading}
-        className={`px-4 py-8 rounded-lg text-white transition ${
+        className={`px-8 py-2 rounded-lg text-white transition ${
           loading ? "bg-amber-300 cursor-not-allowed" : "bg-amber-500 hover:bg-amber-600"
         }`}
       >
@@ -189,7 +189,7 @@ export default function useMultiForm() {
       <button
         onClick={handleStep3}
         disabled={loading}
-        className={`px-4 py-8 rounded-lg text-white transition ${
+        className={`px-8 py-2 rounded-lg text-white transition ${
           loading ? "bg-amber-300 cursor-not-allowed" : "bg-amber-500 hover:bg-amber-600"
         }`}
       >
