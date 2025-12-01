@@ -199,7 +199,7 @@ const countries = ["nigeria", "ghana", "south africa", "kenya", "tanzania", "uga
   </div>
 
   {/* Time */}
-  <div className="grid grid-cols-3 gap-3 mb-3">
+  <div className="grid grid-cols-2 gap-3 mb-3">
      <div className="flex flex-col space-y-1">
       <label className="font-medium text-[#7a7a7b] mb-3">End Date</label>
       <input
