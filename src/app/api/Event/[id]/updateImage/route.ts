@@ -5,48 +5,61 @@ import { verifyToken } from "@/app/utils/middleware";
 import { ParamType } from "@/type";
 import { NextRequest, NextResponse } from "next/server";
 
-
-
-export const PATCH = async (request: NextRequest, { params }: ParamType) => {
+export const PATCH = async (
+  request: NextRequest,
+  { params }: ParamType
+) => {
   try {
     await connectDB();
+
     const user = await verifyToken(request);
-
-    const { id } = await params;
-    let uploadedImageUrl = "";
-
-    // ✅ Extract image file
-    const formData = await request.formData();
-    const file = formData.get("file") as File | null;
-
-    if (file) {
-      const arrayBuffer = await file.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
-
-      const result = await uploadToCloudinary(buffer) as { secure_url: string };
-      uploadedImageUrl = result.secure_url;
-    } else {
-      return NextResponse.json({ message: "No file uploaded" }, { status: 400 });
+    if (!user) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    // ✅ Update event image (ensure ownership)
+    const { id } = await params;
+
+    const formData = await request.formData();
+    const file = formData.get("file");
+
+    if (!file || !(file instanceof File)) {
+      return NextResponse.json(
+        { message: "Invalid or missing file" },
+        { status: 400 }
+      );
+    }
+
+    const buffer = Buffer.from(await file.arrayBuffer());
+
+    const result = await uploadToCloudinary(buffer);
+
+    if (!result.secure_url) {
+      throw new Error("Cloudinary upload failed");
+    }
+
     const event = await Event.findOneAndUpdate(
       { _id: id, createdBy: user._id },
-      { image: uploadedImageUrl },
+      { image: result.secure_url },
       { new: true }
     );
 
     if (!event) {
-      return NextResponse.json({ message: "Event not found or unauthorized" }, { status: 404 });
+      return NextResponse.json(
+        { message: "Event not found or unauthorized" },
+        { status: 404 }
+      );
     }
 
-    return NextResponse.json(
-      { message: "Image updated successfully", event },
-      { status: 200 }
-    );
-
+    return NextResponse.json({
+      message: "Image updated successfully",
+      event,
+    });
   } catch (error: any) {
-    console.error("Error updating image:", error);
-    return NextResponse.json({ message: "Error updating image" }, { status: 500 });
+    console.error("PATCH /updateImage error:", error);
+
+    return NextResponse.json(
+      { message: "Error updating image", error: error.message },
+      { status: 500 }
+    );
   }
 };
