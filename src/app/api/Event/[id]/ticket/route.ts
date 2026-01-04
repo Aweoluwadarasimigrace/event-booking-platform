@@ -5,26 +5,36 @@ import { verifyToken } from "@/app/utils/middleware";
 import { ParamType } from "@/type";
 import { NextRequest, NextResponse } from "next/server";
 
-
-
 export const POST = async (req: NextRequest, { params }: ParamType) => {
   try {
     await connectDB();
     const user = await verifyToken(req);
-    const { id: eventId } = await params;
+    const { id: eventId } = params;
+
     const body = await req.json();
 
-    const { name, isPaid, price, quantity, limitPerUser } = body;
+    // 🔁 Normalize payload (single or multiple)
+    let tickets: any[] = [];
 
-    // Validation
-    if (!name || quantity <= 0) {
+    if (Array.isArray(body.tickets)) {
+      tickets = body.tickets;
+    } else if (body.name) {
+      tickets = [body];
+    } else {
       return NextResponse.json(
-        { message: "Missing required fields" },
+        { message: "Invalid ticket payload" },
         { status: 400 }
       );
     }
 
-    // Check if event exists
+    if (tickets.length === 0) {
+      return NextResponse.json(
+        { message: "At least one ticket is required" },
+        { status: 400 }
+      );
+    }
+
+    // 🔍 Check event
     const event = await Event.findById(eventId);
     if (!event) {
       return NextResponse.json(
@@ -33,36 +43,44 @@ export const POST = async (req: NextRequest, { params }: ParamType) => {
       );
     }
 
-    // Authorization check
+    // 🔐 Authorization
     if (event.createdBy.toString() !== user._id.toString()) {
       return NextResponse.json(
-        {
-          message:
-            "You are not authorized to create tickets for this event",
-        },
+        { message: "Not authorized to create tickets for this event" },
         { status: 403 }
       );
     }
 
-    // Create new ticket
-    const ticket = await Ticket.create({
-      eventId,
-      eventOwnerId: user._id,
-      name,
-      isPaid: isPaid ?? true,
-      price: isPaid ? price || 0 : 0,
-      quantity,
-      limitPerUser: limitPerUser || 5,
-    });
+    const createdTickets = [];
 
-    // Add ticket ID to event
-    event.tickets.push(ticket._id);
+    for (const t of tickets) {
+      if (!t.name || !t.quantity || t.quantity <= 0) {
+        return NextResponse.json(
+          { message: "Invalid ticket data" },
+          { status: 400 }
+        );
+      }
+
+      const ticket = await Ticket.create({
+        eventId,
+        eventOwnerId: user._id,
+        name: t.name,
+        isPaid: t.isPaid ?? true,
+        price: t.isPaid ? t.price || 0 : 0,
+        quantity: t.quantity,
+        limitPerUser: t.limitPerUser || 5,
+      });
+
+      event.tickets.push(ticket._id);
+      createdTickets.push(ticket);
+    }
+
     await event.save();
 
     return NextResponse.json(
       {
-        message: "Ticket created successfully",
-        ticket,
+        message: "Ticket(s) created successfully",
+        tickets: createdTickets,
       },
       { status: 201 }
     );
