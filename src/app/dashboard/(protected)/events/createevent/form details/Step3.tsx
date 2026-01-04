@@ -80,7 +80,6 @@ const Step3 = ({ data, updateField, errors }: Step3Props) => {
         type="number"
         placeholder="Enter price"
         value={price}
-        min={0}
         onChange={e => setPrice(Number(e.target.value))}
         className="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
       />

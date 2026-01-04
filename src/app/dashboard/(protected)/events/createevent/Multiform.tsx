@@ -5,6 +5,7 @@ import Step1 from "./form details/Step1";
 import Step2 from "./form details/Step2";
 import Step3 from "./form details/Step3";
 import { set } from "mongoose";
+import { useRouter } from "next/navigation";
 
 type Ticket = {
   name: string; // e.g. "VIP Ticket"
@@ -60,6 +61,7 @@ export default function useMultiForm() {
   const updateField = (field: string, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
+  const router = useRouter();
 
   const handleStep1 = async () => {
     if (
@@ -144,9 +146,11 @@ if (!eventId) {
         tickets: formData.tickets,
       });
       toast.success("Event created successfully!");
+      router.push("/dashboard/events");
       setFormData(initialData);
       setEventId(null);
       setStep(1);
+    
     } catch (error) {
       console.error("Error adding tickets:", error);
     } finally {
