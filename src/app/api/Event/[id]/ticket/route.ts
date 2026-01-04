@@ -5,11 +5,13 @@ import { verifyToken } from "@/app/utils/middleware";
 import { ParamType } from "@/type";
 import { NextRequest, NextResponse } from "next/server";
 
+
+
 export const POST = async (req: NextRequest, { params }: ParamType) => {
   try {
     await connectDB();
     const user = await verifyToken(req);
-    const { id: eventId } = params;
+    const { id: eventId } = await params;
 
     const body = await req.json();
 
