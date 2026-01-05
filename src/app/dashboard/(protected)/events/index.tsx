@@ -24,6 +24,14 @@ const Events = () => {
       key={evt.id}
       className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg transition"
     >
+      {/* Image */}
+      <div className="relative">
+        <img
+          src={evt.image}
+          alt={evt.title}
+          className="w-48 h-48 mb-4"
+        />
+      </div>
       {/* Title */}
       <h2 className="text-lg font-semibold text-gray-900 mb-1">
         {evt.title}

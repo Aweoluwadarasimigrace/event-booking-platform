@@ -23,7 +23,7 @@ const SideBar = () => {
   return (
     <div className="flex">
       {/* side bar */}
-      <div className="h-screen hidden lg:block border-r-1 border-gray-200 w-70 bg-white px-4 py-5">
+      <div className="h-screen hidden lg:block border-r-1 border-gray-200 lg:w-70 bg-white px-4 py-5">
         <div className="p-4">
           <h1 className="text-amber-500 font-bold text-2xl">EVENTLOOP</h1>
         </div>
