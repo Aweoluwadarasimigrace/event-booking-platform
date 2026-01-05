@@ -23,7 +23,7 @@ const SideBar = () => {
   return (
     <div className="flex">
       {/* side bar */}
-      <div className="h-screen hidden lg:block border-r-1 border-gray-200 lg:w-70 bg-white px-4 py-5">
+      <div className="h-screen hidden lg:block border-r-1 border-gray-200 w-70 bg-white px-4 py-5">
         <div className="p-4">
           <h1 className="text-amber-500 font-bold text-2xl">EVENTLOOP</h1>
         </div>
@@ -65,7 +65,7 @@ const SideBar = () => {
       </div>
 
       {isOpen && (
-        <div className="bg-opacity-50 z-50 lg-hidden">
+        <div className="bg-opacity-50 z-50 lg:hidden">
           <div className="w-full h-full bg-white p-4 fixed top-0 left-0">
             <button onClick={() => setisOpen(false)} className="mb-4 text-xl">
               <FiX />
