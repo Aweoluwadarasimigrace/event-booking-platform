@@ -21,7 +21,7 @@ const SideBar = () => {
   const [isOpen, setisOpen] = useState(false);
 
   return (
-    <div className="flex">
+    <div>
       {/* side bar */}
       <div className="h-screen hidden lg:block border-r-1 border-gray-200 w-70 bg-white px-4 py-5">
         <div className="p-4">
