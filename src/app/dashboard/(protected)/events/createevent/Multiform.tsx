@@ -146,11 +146,10 @@ if (!eventId) {
         tickets: formData.tickets,
       });
       toast.success("Event created successfully!");
-      router.push("/dashboard/events");
       setFormData(initialData);
       setEventId(null);
       setStep(1);
-    
+      router.push("/dashboard/events");
     } catch (error) {
       console.error("Error adding tickets:", error);
     } finally {
