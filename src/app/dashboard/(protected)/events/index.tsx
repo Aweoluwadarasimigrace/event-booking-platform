@@ -52,12 +52,6 @@ const Events = () => {
                       Event Ongoing
                     </span>
                   )}
-                  {evt.tickets?.map((ticket, index) => (
-                    <div key={index} className="mt-3">
-                      <p className="font-medium">{ticket.sold}</p>
-                      <p className="text-sm text-gray-600">Tickets Sold</p>
-                    </div>
-                  ))}
                 </div>
               </div>
             </div>
