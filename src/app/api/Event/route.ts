@@ -2,6 +2,7 @@ import { connectDB } from "@/app/utils/connect";
 import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../model/event.model";
+import Ticket from "../model/ticket.model";
 
 export const GET = async (request: NextRequest) => {
   try {
