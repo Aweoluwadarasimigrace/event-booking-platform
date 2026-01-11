@@ -35,24 +35,15 @@ const TicketSchema = new Schema(
       required: true,
       min: 1, // minimum 1 ticket
     },
-
+    sold: {
+      type: Number,
+      default: 0, // tickets sold
+      min: 0,
+    },
     limitPerUser: {
       type: Number,
       default: 5, // how many a single user can buy
     },
-
-    buyers: [
-      {
-        userId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Buyer",
-        },
-        quantity: {
-          type: Number,
-          default: 1,
-        },
-      },
-    ],
   },
   { timestamps: true }
 );

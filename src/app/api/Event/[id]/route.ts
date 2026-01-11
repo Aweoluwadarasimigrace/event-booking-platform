@@ -15,7 +15,7 @@ export const GET = async (req: NextRequest, { params }: ParamType) => {
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const event = await Event.findById(id);
+    const event = await Event.findById(id).populate("tickets");
     if (!event) {
       return NextResponse.json({ message: "Event not found" }, { status: 404 });
     }

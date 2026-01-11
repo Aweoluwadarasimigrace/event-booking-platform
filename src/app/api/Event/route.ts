@@ -20,7 +20,7 @@ export const GET = async (request: NextRequest) => {
 
     const totalEvents = await Event.countDocuments({ createdBy: user._id });
     // find all events created by this user
-    const events = await Event.find({ createdBy: user._id })
+    const events = await Event.find({ createdBy: user._id }).populate("tickets") 
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);

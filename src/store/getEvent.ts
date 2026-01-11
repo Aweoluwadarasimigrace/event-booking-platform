@@ -6,6 +6,7 @@ name: string;        // e.g. "VIP Ticket"
   isPaid: boolean;     // true = paid, false = free
   price: number;       // price in your currency
   quantity: number;    // total tickets available
+  sold: number;        // tickets sold
   limitPerUser: number; // max tickets per user
 };
 
