@@ -26,34 +26,40 @@ const Events = () => {
               className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg transition"
             >
               {/* Image */}
-              <div className="flex">
-                <img
-                  src={evt.image}
-                  alt={evt.title}
-                  className="w-48 h-48 mb-4"
-                />
-                <div className="ml-4">
-                  {evt.isVirtual ? (
-                    <span className="ml-4 px-2 py-1 bg-amber-100 text-amber-800 text-sm font-medium rounded-full self-start">
-                      Virtual
-                    </span>
-                  ) : (
-                    <span className="ml-4 px-2 py-1 bg-amber-100 text-amber-700 text-sm font-medium rounded-full self-start">
-                      Physical
-                    </span>
-                  )}
-                  <p className="text-lg font-semibold mt-2 mb-2">{evt.title}</p>
-                  {isEventEnded(evt.endDate, evt.endTime) ? (
-                    <span className="px-2 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-full">
-                      Event Ended
-                    </span>
-                  ) : (
-                    <span className="px-2 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
-                      Event Ongoing
-                    </span>
-                  )}
-                </div>
-              </div>
+             <div className="flex flex-col sm:flex-row gap-4">
+  <img
+    src={evt.image}
+    alt={evt.title}
+    className="w-full sm:w-48 h-48 object-cover rounded-lg"
+  />
+
+  <div className="flex flex-col gap-2">
+    {evt.isVirtual ? (
+      <span className="inline-block w-fit px-3 py-1 bg-amber-100 text-amber-800 text-xs sm:text-sm font-medium rounded-full">
+        Virtual
+      </span>
+    ) : (
+      <span className="inline-block w-fit px-3 py-1 bg-amber-100 text-amber-700 text-xs sm:text-sm font-medium rounded-full">
+        Physical
+      </span>
+    )}
+
+    <p className="text-base sm:text-lg font-semibold">
+      {evt.title}
+    </p>
+
+    {isEventEnded(evt.endDate, evt.endTime) ? (
+      <span className="text-xs sm:text-sm font-medium text-red-500">
+        Event Ended
+      </span>
+    ) : (
+      <span className="text-xs sm:text-sm font-medium text-green-600">
+        Event Ongoing
+      </span>
+    )}
+  </div>
+</div>
+
             </div>
           ))}
       </div>
