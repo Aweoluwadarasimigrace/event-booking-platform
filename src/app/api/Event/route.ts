@@ -68,10 +68,16 @@ export const GET = async (request: NextRequest) => {
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error fetching user events:", error);
-    return NextResponse.json(
-      { message: "Failed to fetch events" },
-      { status: 500 }
-    );
+    // console.error("Error fetching user events:", error);
+    // return NextResponse.json(
+    //   { message: "Failed to fetch events" },
+    //   { status: 500 }
+    // );
+
+     console.error("FETCH EVENTS ERROR:", error);
+  return NextResponse.json(
+    { message: (error as Error).message },
+    { status: 500 }
+  );
   }
 };
