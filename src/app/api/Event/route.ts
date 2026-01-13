@@ -21,7 +21,7 @@ export const GET = async (request: NextRequest) => {
 
     const totalEvents = await Event.countDocuments({ createdBy: user._id });
     // find all events created by this user
-    const events = await Event.find({ createdBy: user._id })
+    const events = await Event.find({ createdBy: user._id }).populate("tickets")
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
@@ -40,13 +40,24 @@ export const GET = async (request: NextRequest) => {
       );
     }
 
+    const enrichedEvents = events.map((event) => {
+      const ticketSold = event.tickets.reduce(
+        (sum: number, ticket: any) => sum + ticket.sold,
+        0
+      );
+
+      return {
+        ...event.toObject(),
+        ticketSold,
+      };
+    });
     return NextResponse.json(
       {
         page,
         limit,
         totalEvents,
         totalPages: Math.ceil(totalEvents / limit),
-        events,
+        events: enrichedEvents
       },
       { status: 200 }
     );

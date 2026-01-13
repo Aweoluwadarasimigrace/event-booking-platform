@@ -3,6 +3,7 @@
 import useEventStore from "@/store/getEvent";
 import React, { useEffect, useState } from "react";
 import { isEventEnded } from "./(components)/EventEnded";
+import { PiTicketLight } from "react-icons/pi";
 
 const Events = () => {
   const { event, loading, error, fetchEvent, totalPages } = useEventStore();
@@ -26,40 +27,44 @@ const Events = () => {
               className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg transition"
             >
               {/* Image */}
-             <div className="flex flex-col sm:flex-row gap-4">
-  <img
-    src={evt.image}
-    alt={evt.title}
-    className="w-full sm:w-48 h-48 object-cover rounded-lg"
-  />
+              <div className="flex flex-col sm:flex-row gap-4">
+                <img
+                  src={evt.image}
+                  alt={evt.title}
+                  className="w-full sm:w-48 h-48 object-cover rounded-lg"
+                />
 
-  <div className="flex flex-col gap-2">
-    {evt.isVirtual ? (
-      <span className="inline-block w-fit px-3 py-1 bg-amber-100 text-amber-800 text-xs sm:text-sm font-medium rounded-full">
-        Virtual
-      </span>
-    ) : (
-      <span className="inline-block w-fit px-3 py-1 bg-amber-100 text-amber-700 text-xs sm:text-sm font-medium rounded-full">
-        Physical
-      </span>
-    )}
+                <div className="flex flex-col gap-2">
+                  {evt.isVirtual ? (
+                    <span className="inline-block w-fit px-3 py-1 bg-amber-50 text-amber-600 text-[10px] sm:text-sm font-medium rounded-full">
+                      Virtual
+                    </span>
+                  ) : (
+                    <span className="inline-block w-fit px-2 py-1 bg-amber-50 text-amber-600 text-[10px] sm:text-sm font-medium rounded-full">
+                      Physical
+                    </span>
+                  )}
 
-    <p className="text-base sm:text-lg font-semibold">
-      {evt.title}
-    </p>
+                  <p className="text-base sm:text-lg font-semibold">
+                    {evt.title}
+                  </p>
 
-    {isEventEnded(evt.endDate, evt.endTime) ? (
-      <span className="text-xs sm:text-sm font-medium text-red-500">
-        Event Ended
-      </span>
-    ) : (
-      <span className="text-xs sm:text-sm font-medium text-green-600">
-        Event Ongoing
-      </span>
-    )}
-  </div>
-</div>
-
+                  {isEventEnded(evt.endDate, evt.endTime) ? (
+                    <span className="text-[10px] sm:text-sm font-medium text-red-500">
+                      Event Ended
+                    </span>
+                  ) : (
+                    <span className="text-[10px] sm:text-sm font-medium text-green-600">
+                      Event Ongoing
+                    </span>
+                  )}
+                  <div>
+                    <PiTicketLight />
+                    <span className="text-sm ml-1">{evt.ticketSold}</span>
+                  </div>
+                  <p className="text-gray-400 text-sm">ticket sold</p>
+                </div>
+              </div>
             </div>
           ))}
       </div>

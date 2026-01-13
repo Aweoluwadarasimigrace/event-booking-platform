@@ -26,6 +26,7 @@ type EventData = {
   endTime: string;
   meridiem: string;
   tickets?: Ticket[];
+  ticketSold: number;
 };
 
 type eventStore = {

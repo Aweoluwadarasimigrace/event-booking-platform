@@ -55,7 +55,7 @@ const SideBar = () => {
 
       <div className="bg-white lg:hidden w-full">
         <header>
-          <nav className="flex items-center justify-between p-4 border border-gray-500">
+          <nav className="flex items-center justify-between p-4">
             <h1 className="text-amber-500 font-bold text-xl">EVENTLOOP</h1>
             <button onClick={() => setisOpen(true)} className="text-2xl">
               <FiMenu />
