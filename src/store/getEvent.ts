@@ -11,7 +11,7 @@ name: string;        // e.g. "VIP Ticket"
 };
 
 type EventData = {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   image: string;

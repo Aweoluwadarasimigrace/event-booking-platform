@@ -4,6 +4,7 @@ import useEventStore from "@/store/getEvent";
 import React, { useEffect, useState } from "react";
 import { isEventEnded } from "./(components)/EventEnded";
 import { PiTicketLight } from "react-icons/pi";
+import Link from "next/link";
 
 const Events = () => {
   const { event, loading, error, fetchEvent, totalPages } = useEventStore();
@@ -22,8 +23,9 @@ const Events = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {event &&
           event.map((evt) => (
-            <div
-              key={evt.id}
+           <Link href={`/dashboard/events/${evt._id}`}>
+             <div
+              key={evt._id}
               className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm hover:shadow-lg transition"
             >
               {/* Image */}
@@ -66,6 +68,7 @@ const Events = () => {
                 </div>
               </div>
             </div>
+           </Link>
           ))}
       </div>
       {page < (totalPages || 0) && (
