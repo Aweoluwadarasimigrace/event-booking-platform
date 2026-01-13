@@ -53,5 +53,5 @@ const BuyerSchema = new Schema(
   { timestamps: true }
 );
 
-const Buyer = models.Buyer || model("Buyer", BuyerSchema);
+const Buyer = mongoose.models.Buyer || mongoose.model("Buyer", BuyerSchema);
 export default Buyer;
