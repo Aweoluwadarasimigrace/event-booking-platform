@@ -41,14 +41,17 @@ export const GET = async (request: NextRequest) => {
     }
 
     const enrichedEvents = events.map((event) => {
-      const ticketSold = event.tickets.reduce(
-        (sum: number, ticket: any) => sum + ticket.sold,
-        0
-      );
+     const ticketsSold = Array.isArray(event.tickets)
+  ? event.tickets.reduce(
+      (sum: number, ticket: any) => sum + (ticket.sold || 0),
+      0
+    )
+  : 0;
+
 
       return {
         ...event.toObject(),
-        ticketSold,
+        ticketsSold,
       };
     });
     return NextResponse.json(
