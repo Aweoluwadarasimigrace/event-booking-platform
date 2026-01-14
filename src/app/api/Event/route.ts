@@ -3,9 +3,12 @@ import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import Ticket from "../model/ticket.model";
 import Event from "../model/event.model";
+
 export const GET = async (request: NextRequest) => {
   try {
     await connectDB();
+    Ticket; // ensures model is registered
+
 
     // verify the logged-in user
     const user = await verifyToken(request);
