@@ -30,14 +30,10 @@ type EventData = {
 };
 
 const DisplaySingleEvent = ({ event }: { event: EventData }) => {
+    console.log(event)
   return (
     <div>
-        <h1 className="text-2xl font-bold mb-4">{event.title}</h1>
-        <img src={event.image} alt={event.title} className="w-full h-64 object-cover rounded-lg mb-4" />
-        <p className="mb-2"><strong>Category:</strong> {event.category}</p>
-        <p className="mb-2"><strong>Format:</strong> {event.format}</p>
-        {event.isVirtual && <p className="mb-2"><strong>Location:</strong> {event.location}</p>}
-        {event.meetingLink && <p className="mb-2"><strong>Meeting Link:</strong> {event.meetingLink}</p>}
+       hi
     </div>
   )
 }
