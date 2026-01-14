@@ -83,7 +83,7 @@ export const POST = async (req: NextRequest, { params }: ParamType) => {
     return NextResponse.json(
       {
         message: "Ticket(s) created successfully",
-        tickets: createdTickets,
+        Ticket: createdTickets,
       },
       { status: 201 }
     );
