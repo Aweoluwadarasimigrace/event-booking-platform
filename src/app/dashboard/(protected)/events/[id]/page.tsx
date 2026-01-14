@@ -3,7 +3,7 @@ import React from 'react'
 import { fetchSingleEvent } from '../hooks/fetchSingleEvent';
 import DisplaySingleEvent from '.';
 
-const page = async ({params}: ParamType) => {
+const Page = async ({params}: ParamType) => {
     const { id } = await params;
     console.log(id)
     const event = await fetchSingleEvent(id);
@@ -14,4 +14,4 @@ const page = async ({params}: ParamType) => {
   )
 }
 
-export default page
+export default Page
