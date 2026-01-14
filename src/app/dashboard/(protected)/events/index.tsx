@@ -62,7 +62,7 @@ const Events = () => {
                   )}
                   <div>
                     <PiTicketLight />
-                    <span className="text-sm ml-1">{evt.ticketSold}</span>
+                    <span className="text-sm ml-1">{evt.ticketSold || 0}</span>
                   </div>
                   <p className="text-gray-400 text-sm">ticket sold</p>
                 </div>

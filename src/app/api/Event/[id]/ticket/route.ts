@@ -70,6 +70,7 @@ export const POST = async (req: NextRequest, { params }: ParamType) => {
         isPaid: t.isPaid ?? true,
         price: t.isPaid ? t.price || 0 : 0,
         quantity: t.quantity,
+        
         limitPerUser: t.limitPerUser || 5,
       });
 

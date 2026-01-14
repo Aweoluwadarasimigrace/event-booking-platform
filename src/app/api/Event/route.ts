@@ -3,7 +3,6 @@ import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../model/event.model";
 import Ticket from "../model/ticket.model";
-
 export const GET = async (request: NextRequest) => {
   try {
     await connectDB();
@@ -21,10 +20,11 @@ export const GET = async (request: NextRequest) => {
 
     const totalEvents = await Event.countDocuments({ createdBy: user._id });
     // find all events created by this user
-    const events = await Event.find({ createdBy: user._id }).populate({
-  path: "tickets",
-  select: "sold", // only fetch what you need
-})
+    const events = await Event.find({ createdBy: user._id })
+      .populate({
+        path: "tickets",
+        select: "sold", // only fetch what you need
+      })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
@@ -44,13 +44,12 @@ export const GET = async (request: NextRequest) => {
     }
 
     const enrichedEvents = events.map((event) => {
-     const ticketsSold = Array.isArray(event.tickets)
-  ? event.tickets.reduce(
-      (sum: number, ticket: any) => sum + (ticket.sold || 0),
-      0
-    )
-  : 0;
-
+      const ticketsSold = Array.isArray(event.tickets)
+        ? event.tickets.reduce(
+            (sum: number, ticket: any) => sum + (ticket.sold || 0),
+            0
+          )
+        : 0;
 
       return {
         ...event.toObject(),
@@ -63,7 +62,7 @@ export const GET = async (request: NextRequest) => {
         limit,
         totalEvents,
         totalPages: Math.ceil(totalEvents / limit),
-        events: enrichedEvents
+        events: enrichedEvents,
       },
       { status: 200 }
     );
@@ -74,10 +73,10 @@ export const GET = async (request: NextRequest) => {
     //   { status: 500 }
     // );
 
-     console.error("FETCH EVENTS ERROR:", error);
-  return NextResponse.json(
-    { message: (error as Error).message },
-    { status: 500 }
-  );
+    console.error("FETCH EVENTS ERROR:", error);
+    return NextResponse.json(
+      { message: (error as Error).message },
+      { status: 500 }
+    );
   }
 };
