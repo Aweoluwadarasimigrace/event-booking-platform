@@ -1,10 +1,9 @@
-import { ParamType } from '@/type'
 import React from 'react'
 import { fetchSingleEvent } from '../hooks/fetchSingleEvent';
 import DisplaySingleEvent from '.';
 
-const Page = async ({params}: ParamType) => {
-    const { id } = await params;
+const Page = async ({params}: {params: {id: string}}) => {
+    const { id } = params;
     console.log(id)
     const event = await fetchSingleEvent(id);
   return (
