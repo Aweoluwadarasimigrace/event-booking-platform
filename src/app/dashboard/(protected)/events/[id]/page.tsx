@@ -9,7 +9,8 @@ const Page = async ({params}: ParamType) => {
     const event = await fetchSingleEvent(id);
   return (
     <div>
-        <DisplaySingleEvent event={event} />
+        hi
+        {/* <DisplaySingleEvent event={event} /> */}
     </div>
   )
 }
