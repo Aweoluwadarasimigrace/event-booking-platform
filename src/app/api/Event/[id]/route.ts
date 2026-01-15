@@ -2,12 +2,15 @@ import { connectDB } from "@/app/utils/connect";
 import { verifyToken } from "@/app/utils/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../../model/event.model";
+import Ticket from "../../model/ticket.model";
 import { ParamType } from "@/type";
 
 
 
 export const GET = async (req: NextRequest, { params }: ParamType) => {
+  Ticket; // ensures model is registered
      const { id } = await params;
+     console.log(id, "id params")
   try {
     await connectDB();
     const user = await verifyToken(req);
